@@ -1,0 +1,111 @@
+h1{
+    text-align: center;
+}
+/* btn class */
+.btn{
+    outline: none;
+    cursor: pointer;
+    border: none;
+    display: block;
+    position: relative;
+    font-size: 16px;
+    font-weight: 300;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 25px 80px;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+/* primary button */
+.btn-primary{
+    background-color: #0275d8;
+    box-shadow: 0 6px #052341;
+}
+.btn-primary:hover{
+    box-shadow: 0 4px #052341;
+    top: 2px;
+}
+.btn-primary:active{
+    box-shadow: 0 0 #052341;
+    top: 6px;
+}
+/* success button */
+.btn-success{
+    background-color: #5cb85c;
+    box-shadow: 0 6px #1B371C;
+}
+.btn-success:hover{
+    box-shadow: 0 4px #1B371C;
+    top: 2px;
+}
+.btn-success:active{
+    box-shadow: 0 0 #1B371C;
+    top: 6px;
+}
+/* info button */
+.btn-info{
+    background-color: #5bc0de;
+    box-shadow: 0 6px #1C3A42;
+}
+.btn-info:hover{
+    box-shadow: 0 4px #1C3A42;
+    top: 2px;
+}
+.btn-info:active{
+    box-shadow: 0 0 #1C3A42;
+    top: 6px;
+}
+/* danger button */
+.btn-danger{
+    background-color: #d9534f;
+    box-shadow: 0 6px #2D2D2D;
+}
+.btn-danger:hover{
+    box-shadow: 0 4px #2D2D2D;
+    top: 2px;
+}
+.btn-danger:active{
+    box-shadow: 0 0 #2D2D2D;
+    top: 6px;
+}
+/* warning button */
+.btn-warning{
+    background-color: #f0ad4e;
+    box-shadow: 0 6px #473317;
+}
+.btn-warning:hover{
+    box-shadow: 0 4px #473317;
+    top: 2px;
+}
+.btn-warning:active{
+    box-shadow: 0 0 #473317;
+    top: 6px;
+}
+/* light button */
+.btn-light{
+    background-color: #f7f7f7;
+    box-shadow: 0 6px #4A4A4A;
+    color: #4a4a4a;
+}
+.btn-light:hover{
+    box-shadow: 0 4px #4A4A4A;
+    top: 2px;
+}
+.btn-light:active{
+    box-shadow: 0 0 #4A4A4A;
+    top: 6px;
+}
+/* dark button */
+.btn-dark{
+    background-color: #292b2c;
+    box-shadow: 0 6px #0C0D0D;
+}
+.btn-dark:hover{
+    box-shadow: 0 4px #0C0D0D;
+    top: 2px;
+}
+.btn-dark:active{
+    box-shadow: 0 0 #0C0D0D;
+    top: 6px;
+}

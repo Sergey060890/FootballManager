@@ -1,0 +1,25 @@
+h2 {
+    font-size: xxx-large;
+    font-family: Arial;
+}
+
+caption {
+    font-family: Arial;
+    font-size: xx-large;
+}
+
+td {
+    font-size: xx-large;
+    font-family: Arial;
+}
+
+tr {
+    font-size: xx-large;
+    font-family: Arial;
+}
+
+body {
+    background: linear-gradient(to top left, powderblue, cornflowerblue);
+    color: darkblue;
+    background-size: cover;
+}

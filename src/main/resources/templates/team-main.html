@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../static/css/button-small.css" rel="stylesheet">
+    <link href="../../static/css/button.css" rel="stylesheet">
+    <link href="../../static/css/neon.css" rel="stylesheet">
+</head>
+<body style="background: url(../static/images/soccer-9.jpg)">
+<!--<header th:include="blocks/header.html"></header>-->
+<!--<div th:replace="blocks/header"></div>-->
+<header th:insert="blocks/header"></header>
+<center>
+    <h3>MY TEAMS</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr class="frame">
+
+            <th scope="col"><h4>Team name</h4></th>
+            <th scope="col"><h4>City</h4></th>
+            <th colspan="1" scope="col"><h4>Actions</h4></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="table-primary" th:if="${teams.empty}">
+            <td colspan="3" scope="col"><h4>No teams available</h4></td>
+        </tr>
+        <tr class="table-primary" th:each="el : ${teams}" >
+            <!--            <td><span th:text="${book.title}"> Title </span></td>-->
+            <!--            <td><span th:text="${book.author}"> Author </span></td>-->
+            <td>
+                <div class="frame">
+                    <h3 th:text="${el.team_name}"/>
+                </div>
+
+            </td>
+
+            <td>
+                <div class="frame">
+                    <h3 th:text="${el.city}"/>
+                </div>
+            </td>
+
+            <td>
+                <div class="frame">
+                    <button th:href="'/team/' + ${el.team_id}" class="custom-btn btn-12"><span>GO!</span><span>SELECT</span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="gradient-button1" href="/team/add">CREATE A TEAM</a>
+
+    <a class="gradient-button1" href="/">BACK</a>
+
+</center>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+body {
+    background: #d6eaf8;
+}
+
+.gradient-button {
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    padding: 3px 8px;
+    float: left;
+    margin: 4px 12px;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: normal;
+    background-image: linear-gradient(to left, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+    background-size: 100% auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+    transition: .5s;
+}
+
+.gradient-button:hover {
+    background-position: right center;
+    background-repeat: repeat;
+}
