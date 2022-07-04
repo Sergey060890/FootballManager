@@ -1,12 +1,15 @@
 package project.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import project.models.Player;
 import project.models.Team;
 import project.repository.PlayerRepository;
 import project.service.dto.PlayerDTO;
 import project.service.dto.mapper.PlayerMapper;
 import project.service.interfaces.PlayerService;
+
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,6 +18,8 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @create 2022-05-03 13:17
  */
+@Service
+@Transactional
 public class PlayerServiceImpl implements PlayerService {
 
     @Autowired

@@ -13,21 +13,21 @@
     </h2>
     <div th:each="el : ${team}">
         <form method="post">
-            <input type="text" th:value="${el.team_name}" name="type" placeholder="Enter the title"
+            <input type="text" th:value="${el.team_name}" name="name" placeholder="Enter the title"
                    class="form-control"></br>
 
 
-            <input type="text" th:value="${el.city}" name="age" placeholder="Enter city"
+            <input type="text" th:value="${el.city}" name="city" placeholder="Enter city"
                    class="form-control"></br>
 
 
-            <input type="text" th:value="${el.country}" name="price" placeholder="Enter country"
+            <input type="text" th:value="${el.country}" name="country" placeholder="Enter country"
                    class="form-control"></br>
 
-            <input type="text" th:value="${el.stadium}" name="price" placeholder="Enter stadium name"
+            <input type="text" th:value="${el.stadium}" name="stadium" placeholder="Enter stadium name"
                    class="form-control"></br>
 
-            <input type="text" th:value="${el.coach}" name="price" placeholder="Enter the trainer's first and last name"
+            <input type="text" th:value="${el.coach}" name="coach" placeholder="Enter the trainer's first and last name"
                    class="form-control"></br> </br>
             <center>
                 <button type="submit" class="gradient-button1">SAVE</button>

@@ -141,33 +141,21 @@ article {
 }
 
 .hi-1 {
-    background-image: url(images/pexelsphoto1594932.jpeg);
+    background-image: url(../images/pexelsphoto1594932.jpeg);
 }
 
 /* Photo by Lucas Favre
    https://unsplash.com/photos/BRTV55ErUZg
 ----------------------------------------------- */
 .hi-2 {
-    background-image: url(images/ball.jpeg);
+    background-image: url(../images/soccer-9.jpg);
 }
 
 /* Photo by Roell de Ram
    https://unsplash.com/photos/2DM7eOR5iyc
 ----------------------------------------------- */
 .hi-3 {
-    background-image: url(images/2770134848.jpg);
-}
-
-.hi-4 {
-    background-image: url(images/2770134848.jpg);
-}
-
-.hi-5 {
-    background-image: url(images/2770134848.jpg);
-}
-
-.hi-6 {
-    background-image: url(images/2770134848.jpg);
+    background-image: url(../images/wp4087883.jpg);
 }
 
 /* Photo by Go to Bernd Wahlbrinck

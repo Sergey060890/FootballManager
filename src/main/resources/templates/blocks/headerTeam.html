@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+
+<html>
+<link href="../../static/css/button-small.css" rel="stylesheet">
+<link href="../../static/css/button.css" rel="stylesheet">
+<link href="../../static/css/top.css" rel="stylesheet">
+<link href="../../static/css/style.css" rel="stylesheet">
+<link href="../../static/css/table.css" rel="stylesheet">
+<link href="../../static/css/center.css" rel="stylesheet">
+
+<style>
+    a:link {
+        text-decoration: none;
+    }
+</style>
+<body>
+<div class="topnav">
+    <a class="active" href="/">Main page</a>
+    <a th:href="'/team/'+${team_id}+ '/games' ">Play games</a>
+    <a th:href="'/team/'+${team_id}+ '/players' ">Team line-up</a>
+    <a href='<c:url value="statsTeam?id=${id}" />'>Team statistics</a>
+</div>
+</body>
+</html>

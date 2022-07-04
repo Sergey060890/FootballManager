@@ -3,6 +3,7 @@ package project.service.implementation;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import project.models.Game;
 import project.models.GoalConceded;
 import project.models.GoalScore;
@@ -24,6 +25,7 @@ import project.service.interfaces.GameService;
 import project.service.interfaces.TeamService;
 import project.service.random.RandomResult;
 
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +36,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
-
+@Service
+@Transactional
 public class GameServiceImpl implements GameService {
     public static final String RED_CARD = "' Red card! ";
     public static final String YELLOW_CARD = "' Yellow card! ";

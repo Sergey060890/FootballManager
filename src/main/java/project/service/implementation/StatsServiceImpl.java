@@ -2,6 +2,7 @@ package project.service.implementation;
 
 
 
+import org.springframework.stereotype.Service;
 import project.models.Game;
 import project.models.GoalConceded;
 import project.models.GoalScore;
@@ -16,10 +17,12 @@ import project.service.interfaces.RedCardService;
 import project.service.interfaces.StatsService;
 import project.service.interfaces.YellowCardService;
 
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
-
+@Service
+@Transactional
 public class StatsServiceImpl implements StatsService {
     public static final String WIN = "WIN";
     public static final String LOSE = "LOSE";
