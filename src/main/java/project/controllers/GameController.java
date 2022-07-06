@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import project.models.Result;
 import project.service.interfaces.GameService;
 import project.service.interfaces.ResultService;
 import project.service.interfaces.TeamService;
@@ -75,7 +76,12 @@ public class GameController {
         return "game-play";
     }
 
-    public static void main(String[] args) {
-
+    @GetMapping("/team/{team_id}/games/{id}/play/startling")//start line-up game
+    public String gameStartLineUpPlay(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame, Model model) {
+        model.addAttribute("game", resultService.findResultById(idGame));
+        model.addAttribute("teamId", idTeam);
+        model.addAttribute("players",teamService.showAllPlayerTeamInfo(idTeam));
+        return "game-play-startling";
     }
+
 }

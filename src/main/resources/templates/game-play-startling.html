@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+    <link href="../static/css/modal.css" rel="stylesheet" th:href="@{/css/modal.css}">
+    <link href="../../static/css/neon.css" rel="stylesheet">
+    <link href="../static/css/button-small.css" rel="stylesheet" th:href="@{/css/button-small.css}">
+    <link href="../static/css/button.css" rel="stylesheet" th:href="@{/css/button.css}">
+    <link href="../static/css/top.css" rel="stylesheet" th:href="@{/css/top.css}">
+    <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="../static/css/table.css" rel="stylesheet" th:href="@{/css/table.css}">
+    <link href="../static/css/center.css" rel="stylesheet" th:href="@{/css/center.css}">
+    <link href="../static/css/neon.css" rel="stylesheet" th:href="@{/css/neon.css}">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <style>
+        h3 {
+            /*background: #D9FFAD; !* Цвет фона под заголовком *!*/
+            color: white; /* Цвет текста */
+            /*padding: 2px; !* Поля вокруг текста *!*/
+        }
+    </style>
+
+    <script type="text/javascript">
+        var delay_popup = 500;
+        setTimeout("document.getElementById('bg_popup').style.display='block'", delay_popup);
+    </script>
+</head>
+<body th:style="'background: url(/images/ball.jpeg)'">
+<center>
+    <h3>Please select starting lineup!</h3>
+</center>
+<!--<div th:each="el : ${players}">-->
+<!--    <h3 th:text="${el.player_surname}"/>-->
+<!--</div>-->
+
+
+<div class="container mt-5 mb-5" >
+        <form method="post" th:each="el : ${players}">
+            <input type="checkbox" style="width:20px;height:20px;" th:value="${el.player_surname}" checked name="player"  th:text="${' '+el.player_surname}+' '+${ el.position} "
+            >
+
+        </form>
+</div>
+<center>
+    <button type="submit" class="btn btn-success">GO!</button>
+    <a th:href="'/team/'+${teamId}+ '/games/'+${game.id}+'/play'" class="btn btn-warning">BACK</a>
+</center>
+<!--<h3 th:text="${el.player_surname}" />-->
+
+<div id="bg_popup">
+    <div id="popup">
+        <center><h1>Choose your starting lineup!</h1></center>
+        <p>- In the starting line-up you need to choose 11 players!</p>
+        <p>- Don't forget to choose a goalkeeper!</p>
+        <p>- There can be no more than 1 goalkeeper in the starting line-up</p>
+        <p></p>
+        <p>* If these conditions are not met, you will be returned to the composition selection page!</p>
+        <center>
+            <a class="btn btn-primary" href="#" title="Close"
+               onclick="document.getElementById('bg_popup').style.display='none'; return false;">OK</a>
+        </center>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -15,11 +15,13 @@
     <link href="../static/css/table.css" rel="stylesheet" th:href="@{/css/table.css}">
     <link href="../static/css/center.css" rel="stylesheet" th:href="@{/css/center.css}">
     <link href="../static/css/neon.css" rel="stylesheet" th:href="@{/css/neon.css}">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1251"/>
+    <link rel="stylesheet" type="text/css" href="#" media="#"/>
     <script type="text/javascript">
         function randomImg() {
-            var imgAr = ['<img th:src="@{/images/rain_weather_icon_151998.png}"  />',
-                '<img th:src="@{/images/sunny_sunshine_weather_2778.png}"  />',
-                '<img th:src="@{/images/sunny_weather_icon_150663.png}"  />'];
+            var imgAr = ['<img src="/images/rain_weather_icon_151998.png"</br><p>Rain<p/>',
+                '<img src="/images/sunny_sunshine_weather_2778.png"</br><p>Sunny<p/>',
+                '<img src="/images/sunny_weather_icon_150663.png"</br><p>Cloudy<p/>'];
             var rnd = Math.floor(Math.random() * imgAr.length);
             var rndImg = imgAr[rnd];
             var imgTag = document.getElementById('img');
@@ -31,6 +33,7 @@
 <body th:style="'background: url(/images/imgonline-com-ua-Resize-Vdf4lo3tsOP.jpg)'">
 
 <table border="3" width="50%">
+
     <tr>
 
         <th>
@@ -57,10 +60,15 @@
     <tr>
 
         <td>
-            <center><h4 th:text="${game.teamGame.team_name}"/>vs</br><h4 th:text="${game.opponent_name}"/></center>
+            <center><h4 th:text="${game.teamGame.team_name}"/>
+                <p>VS</p>
+                <h4 th:text="${game.opponent_name}"/></center>
         </td>
 
         <td>
+            <center>
+                <img src="/images/imgonline-com-ua-Resize-V2qLvdzIh5t.png"  />
+            </center>
             <center><h4 th:text="${game.teamGame.stadium}"/></center>
         </td>
 
@@ -71,10 +79,16 @@
         </td>
 
         <td>
+            <center>
+                <img src="/images/imgonline-com-ua-Resize-7XKhmxXxCQDs.png"  />
+            </center>
             <h4 th:text="${attendance}"/>
         </td>
 
         <td>
+            <center>
+                <img src="/images/imgonline-com-ua-Resize-Gujft093lSy0Z.png"  />
+            </center>
             <h4 th:text="${referee}"/>
         </td>
 
@@ -82,9 +96,8 @@
 
 </table>
 <center>
-    <a th:href="'/team/'+${team_id}+ '/games/createGame'" class="btn btn-success">START THE
-        GAME!</a>
-    <a th:href="'/team/' + ${teamId}" class="btn btn-primary">BACK</a>
+    <a th:href="'/team/'+${team_id}+ '/games/'+${game.id}+'/play/startling'" class="custom-btn btn-4">START!</a>
+    <a th:href="'/team/' +${team_id}+ '/games/'" class="custom-btn btn-1">BACK</a>
 </center>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
