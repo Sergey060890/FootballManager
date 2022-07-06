@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import project.service.interfaces.GameService;
 import project.service.interfaces.ResultService;
 import project.service.interfaces.TeamService;
 
@@ -19,11 +21,14 @@ public class GameController {
     @Autowired
     private TeamService teamService;
 
-    @GetMapping ("/team/{team_id}/games")//вывод всех матчей команды
+    @Autowired
+    private GameService gameService;
+
+    @RequestMapping ("/team/{team_id}/games")//вывод всех матчей команды
     public String teamGames(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute("games", resultService.showAllResultTeamInfo(id));
         model.addAttribute("teamId", id);
-        return "games-team";
+        return "team-games";
     }
 
     @GetMapping("/team/{team_id}/games/createGame")//создание игры
@@ -59,6 +64,15 @@ public class GameController {
         resultService.deleteResult(idGame);
         model.addAttribute("teamId", idTeam);
         return "redirect:/team/{team_id}/games";
+    }
+
+    @GetMapping("/team/{team_id}/games/{id}/play")//play game
+    public String gamePlay(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame, Model model) {
+        model.addAttribute("game", resultService.findResultById(idGame));
+        model.addAttribute("teamId", idTeam);
+        model.addAttribute("attendance",gameService.countAttendance());
+        model.addAttribute("referee", gameService.refereeGame());
+        return "game-play";
     }
 
     public static void main(String[] args) {

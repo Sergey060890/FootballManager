@@ -8,13 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import project.models.Team;
 import project.service.dto.TeamDTO;
 import project.service.interfaces.GameService;
 import project.service.interfaces.PlayerService;
 import project.service.interfaces.TeamService;
 
-import java.util.ArrayList;
 
 @Controller
 public class TeamController {

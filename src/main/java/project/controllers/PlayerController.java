@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.models.Player;
 import project.service.interfaces.PlayerService;
@@ -20,11 +21,11 @@ public class PlayerController {
     @Autowired
     private TeamService teamService;
 
-    @GetMapping("/team/{team_id}/players")//вывод всех игроков
+    @RequestMapping("/team/{team_id}/players")//вывод всех игроков
     public String teamPlayers(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute("players", teamService.showAllPlayerTeamInfo(id));
         model.addAttribute("teamId", id);
-        return "allPlayers-team";
+        return "team-players";
     }
 
     @GetMapping("/team/{team_id}/players/addPlayer")//добавление игрока
@@ -44,7 +45,7 @@ public class PlayerController {
         return "redirect:/team/{team_id}/players";
     }
 
-    @GetMapping("/team/{team_id}/players/{player_id}/edit")//edit player
+    @GetMapping("/team/{team_id}/players/{player_id}/info/edit")//edit player
     public String playerEdit(@PathVariable(value = "team_id") Integer idTeam,
                              @PathVariable(value = "player_id") Integer idPlayer, Model model) {
         model.addAttribute("player", playerService.findPlayerById(idPlayer));
@@ -52,7 +53,7 @@ public class PlayerController {
         return "player-edit";
     }
 
-    @PostMapping("/team/{team_id}/players/{player_id}/edit")//edit game(получение из формы)
+    @PostMapping("/team/{team_id}/players/{player_id}/info/edit")//edit game(получение из формы)
     public String playerPostEdit(@PathVariable(value = "team_id") Integer id,@PathVariable(value = "player_id") Integer idPlayer, @RequestParam String name,
                                  @RequestParam String surname, @RequestParam String country, @RequestParam Integer age,
                                  @RequestParam String position,
@@ -61,4 +62,21 @@ public class PlayerController {
         playerService.updatePlayer(idPlayer, name, surname, country, age, position);
         return "redirect:/team/{team_id}/players";
     }
+
+    @PostMapping("/team/{team_id}/players/{player_id}/info/remove")//delete game
+    public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "player_id") Integer idPlayer, Model model) {
+        playerService.deletePlayer(idPlayer);
+        model.addAttribute("teamId", idTeam);
+        return "redirect:/team/{team_id}/players";
+    }
+
+    @GetMapping("/team/{team_id}/players/{player_id}/info")//player info
+    public String playerInfo(@PathVariable(value = "team_id") Integer idTeam,
+                             @PathVariable(value = "player_id") Integer idPlayer, Model model) {
+        model.addAttribute("player", playerService.findPlayerById(idPlayer));
+        model.addAttribute("teamId", idTeam);
+        return "player-info";
+    }
+
+
 }
