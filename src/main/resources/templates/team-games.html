@@ -9,6 +9,11 @@
             crossorigin="anonymous"></script>
     <link href="../../static/css/neon.css" rel="stylesheet">
     <link href="../static/css/woow.css" rel="stylesheet">
+    <style>
+        h4 {
+            color: blue; /* Цвет текста */
+        }
+    </style>
 
 </head>
 <body th:style="'background: url(/images/220421-soc.jpeg)'">
@@ -36,32 +41,12 @@
             <td>
                 <a th:href="'/team/'+${team_id}+ '/games/'+${el.id}+'/play'"
                    class="custom-btn btn-3"><span>PLAY!</span></a>
-                <a th:href="'/team/'+${team_id}+ '/games/'+${el.id}+'/edit'" class="custom-btn btn-4"><span>EDIT!</span></a>
+                <a th:href="'/team/'+${team_id}+ '/games/'+${el.id}+'/edit'" class="custom-btn btn-4"><span>EDIT</span></a>
 
-                <a class="custom-btn btn-8" data-bs-toggle="modal"
-                   data-bs-target="#exampleModal"><span>REFUSE</span></a>
+                <form th:action="'/team/'+${team_id}+ '/games/'+${el.id}+'/remove'" method="post">
+                    <button class="custom-btn btn-8" type="submit">REFUSE</button>
+                </form>
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <center>
-                                    <h3 class="modal-title" id="exampleModalLabel">Refusal to play</h3>
-                                </center>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to cancel this game?
-                            </div>
-                            <div class="modal-footer">
-                                <form th:action="'/team/'+${team_id}+ '/games/'+${el.id}+'/remove'" method="post">
-                                    <button class="btn btn-danger" type="submit">YES</button>
-                                </form>
-                                <button class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </td>
         </tr>
         </tbody>

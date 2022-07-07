@@ -9,14 +9,20 @@
             crossorigin="anonymous"></script>
     <link href="../static/css/neon.css" rel="stylesheet">
     <link href="../static/css/woow.css" rel="stylesheet">
-
+    <style>
+        h3 {
+            color: white; /* Цвет текста */
+        }
+    </style>
 </head>
-<body th:style="'background: url(/images/imgonline-com-ua-Resize-NVPMGuHnSgyHKnIp.jpg)'">
+<body th:style="'background: url(/images/imgonline-com-ua-Resize-qDHyeKh0zjA.jpg)'">
 <header th:insert="blocks/headerTeam"></header>
 <center>
     <h3>
         My lineup
-    </h3>
+    </h3><br>
+    <a th:href="'/team/'+${team_id}+ '/players/addPlayer'" class="custom-btn btn-13">ADD</a>
+    <a th:href="'/team/' + ${teamId}" class="custom-btn btn-1">BACK</a><br><br>
     <table border="3" width="50%">
         <thead>
         <tr>
@@ -34,15 +40,15 @@
         </tr>
         <tr th:each="el : ${players}">
             <td>
-                <h3 th:text="${el.player_name}"/>
+                <h3 style="color: black" th:text="${el.player_name}"/>
             </td>
 
             <td>
-                <h3 th:text="${el.player_surname}"/>
+                <h3 style="color: black; font-weight: bold;" th:text="${el.player_surname}"/>
             </td>
 
             <td>
-                <h3 th:text="${el.position}"/>
+                <h3 style="color:  black" th:text="${el.position}"/>
             </td>
 
 
@@ -54,10 +60,10 @@
             </td>
         </tr>
         </tbody>
-    </table>
+    </table><br>
 
-    <a th:href="'/team/'+${team_id}+ '/players/addPlayer'" class="gradient-button1">ADD PLAYER</a>
-    <a th:href="'/team/' + ${teamId}" class="gradient-button1">BACK</a>
+    <a th:href="'/team/'+${team_id}+ '/players/addPlayer'" class="custom-btn btn-13">ADD</a>
+    <a th:href="'/team/' + ${teamId}" class="custom-btn btn-1">BACK</a><br><br>
 
 </center>
 

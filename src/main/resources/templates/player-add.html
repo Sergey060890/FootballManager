@@ -1,37 +1,32 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Creation of teams</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <link href="../../static/css/top.css" rel="stylesheet">
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/table.css" rel="stylesheet">
     <link href="../../static/css/center.css" rel="stylesheet">
+    <style>
+        h3 {
+            /*background: #D9FFAD; !* Цвет фона под заголовком *!*/
+            color: white; /* Цвет текста */
+            /*padding: 2px; !* Поля вокруг текста *!*/
+        }
+    </style>
 </head>
-<body style="background: url(../static/images/imgonline-com-ua-Resize-MdZBEQ3BJR.jpg)">
+<body th:style="'background: url(/images/imgonline-com-ua-Resize-VuqdEDlF0WmnKl7.jpg)'">
 
-<header th:insert="blocks/header"></header>
-
-<!--<div class="container mt-5 mb-5">-->
-<!--    <center><h3>Adding a new command</h3></center>-->
-<!--    <form method="post">-->
-<!--        <input type="text" name="name" placeholder="Enter the title" class="form-control"></br>-->
-<!--        <input type="text" name="city" placeholder="Enter city" class="form-control"></br>-->
-<!--        <input type="text" name="country" placeholder="Enter country" class="form-control"></br>-->
-<!--        <input type="text" name="stadium" placeholder="Enter stadium name" class="form-control"></br>-->
-<!--        <input type="text" name="coach" placeholder="Enter the trainer's first and last name" class="form-control"></br>-->
-<!--        </br>-->
-<!--        <button type="submit" class="btn btn-success">ADD TEAM</button>-->
-<!--        <a th:href="'/team'" class="btn btn-primary">BACK</a>-->
-<!--    </form>-->
-<!--</div>-->
+<header th:insert="blocks/headerTeam"></header>
 
 <form method="post">
     <center>
+        <h3>
+            Adding a player
+        </h3>
         <br>
         <label for="pos">Сhoose a position</label>
-        <select name="position" id="pos" style="width: 120px;"/>
+        <select name="position" id="pos" style="width: 170px;"/>
         <option value="GK">GK</option>
         <option value="FRW">FRW</option>
         <option value="RW">RW</option>
@@ -45,10 +40,10 @@
         </select>
         <br><br>
 
-        <input name="name" required placeholder="Enter name" style="width: 250px;"/><br><br>
-        <input name="surname" placeholder="Enter last name" style="width: 250px;"/><br><br>
-        <input name="country" placeholder="Enter country" style="width: 250px;"/><br><br>
-        <input name="age" placeholder="Enter age" style="width: 250px;"/><br><br>
+        <input name="name" required placeholder="Enter name" style="width:300px;"/><br><br>
+        <input name="surname" placeholder="Enter last name" style="width: 300px;"/><br><br>
+        <input name="country" placeholder="Enter country" style="width: 300px;"/><br><br>
+        <input name="age" placeholder="Enter age" style="width: 300px;"/><br><br>
 
         <input type="submit" class="gradient-button1" value="ADD"/>
         <a th:href="'/team/'+${teamId}+ '/players'" class="gradient-button1">BACK</a>

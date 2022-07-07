@@ -9,20 +9,27 @@
     <link href="../../static/css/table.css" rel="stylesheet">
     <link href="../../static/css/center.css" rel="stylesheet">
     <link href="../../static/css/neon.css" rel="stylesheet">
+    <style>
+        h3 {
+            /*background: #D9FFAD; !* Цвет фона под заголовком *!*/
+            color: white; /* Цвет текста */
+            /*padding: 2px; !* Поля вокруг текста *!*/
+        }
+    </style>
 </head>
-<body style="background: url(../static/images/imgonline-com-ua-Resize-MdZBEQ3BJR.jpg)">
+<body th:style="'background: url(/images/imgonline-com-ua-Resize-NVPMGuHnSgyHKnIp.jpg)'">
 
-<header th:insert="blocks/header"></header>
+<header th:insert="blocks/headerTeam"></header>
 
 <center>
-    <h2>
+    <h3>
         Player Editing
-    </h2>
+    </h3>
     <div th:each="el : ${player}">
         <form method="post">
             <center>
-                <p>POSITION</p>
-                <select type="text" name="position" style="width: 172px;" >
+                <p style="color: blue">POSITION</p>
+                <select type="text" name="position" style="width: 300px;" >
                     <option>GK</option>
                     <option>FRW</option>
                     <option>RW</option>
@@ -34,19 +41,19 @@
                     <option>LB</option>
                     <option>RB</option>
                 </select>
-                <p>NAME</p>
+                <p style="color: blue">NAME</p>
                 <input type="text" th:value="${el.player_name}" name="name" required placeholder="Enter name"
-                       class="form-control"></br>
+                       style="width: 300px;"></br>
 
-                <p>SURNAME</p>
+                <p style="color: blue">SURNAME</p>
                 <input type="text" th:value="${el.player_surname}" name="surname" placeholder="Enter surname"
-                       class="form-control"></br>
-                <p>COUNTRY</p>
+                       style="width: 300px;"></br>
+                <p style="color: blue">COUNTRY</p>
                 <input type="text" th:value="${el.country}" name="country" placeholder="Enter country"
-                       class="form-control"></br>
-                <p>AGE</p>
+                       style="width: 300px;"></br>
+                <p style="color: blue">AGE</p>
                 <input type="text" th:value="${el.age}" name="age" placeholder="Enter age"
-                       class="form-control"></br>
+                       style="width: 300px;"></br>
 
 
 

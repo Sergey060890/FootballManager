@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -29,25 +29,24 @@
         setTimeout("document.getElementById('bg_popup').style.display='block'", delay_popup);
     </script>
 </head>
-<body th:style="'background: url(/images/ball.jpeg)'">
+<body th:style=" 'background: url(/images/imgonline-com-ua-Resize-864Nm720FpSU.jpg)'">
 <center>
     <h3>Please select starting lineup!</h3>
-</center>
+</center><br><br><br>
 <!--<div th:each="el : ${players}">-->
 <!--    <h3 th:text="${el.player_surname}"/>-->
 <!--</div>-->
 
 
-<div class="container mt-5 mb-5" >
+<div class="container mt-100 mb-100" style="color: white;font-size: 120%; " >
         <form method="post" th:each="el : ${players}">
-            <input type="checkbox" style="width:20px;height:20px;" th:value="${el.player_surname}" checked name="player"  th:text="${' '+el.player_surname}+' '+${ el.position} "
-            >
-
+                <input type="checkbox" style="width:20px;height:20px;" th:value="${el.player_surname}" checked name="player"  th:text="${' '+el.player_surname}+' '+${ el.position} "
+                >
         </form>
 </div>
 <center>
-    <button type="submit" class="btn btn-success">GO!</button>
-    <a th:href="'/team/'+${teamId}+ '/games/'+${game.id}+'/play'" class="btn btn-warning">BACK</a>
+    <button type="submit" class="custom-btn btn-8">GO!</button>
+    <a th:href="'/team/'+${teamId}+ '/games/'+${game.id}+'/play'" class="custom-btn btn-3">BACK</a>
 </center>
 <!--<h3 th:text="${el.player_surname}" />-->
 
