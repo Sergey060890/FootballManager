@@ -18,6 +18,7 @@ import project.repository.GoalScoreRepository;
 import project.repository.PlayerRepository;
 import project.repository.RedCardRepository;
 import project.repository.SubstitutionRepository;
+import project.repository.TeamRepository;
 import project.repository.YellowCardRepository;
 import project.service.dto.GameDTO;
 import project.service.dto.mapper.GameMapper;
@@ -39,10 +40,10 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class GameServiceImpl implements GameService {
-    public static final String RED_CARD = "' Red card! ";
-    public static final String YELLOW_CARD = "' Yellow card! ";
+    public static final String RED_CARD = "' RED CARD! ";
+    public static final String YELLOW_CARD = "' YELLOW CARD! ";
     public static final String STRING = ":";
-    public static final String GOAL_MISSED = "' Goal missed! ";
+    public static final String GOAL_MISSED = "' GOAL MISSED! ";
     public static final String GOOOOAAAAL = "' GOOOOAAAAL! ";
     public static final String STRING1 = " ";
     public static final String GK = "GK";
@@ -67,14 +68,14 @@ public class GameServiceImpl implements GameService {
     @Autowired
     private SubstitutionRepository substitutionRepository;
 
-    RandomResult random = new RandomResult();
-    TeamService teamService = new TeamServiceImpl();
+    @Autowired
+    private TeamService teamService;
 
-
+    private RandomResult random = new RandomResult();
 
     @Override
     public Game createGame(Team team,
-                           String opponentTeam, Set<Player> players) throws SQLException {
+                           String opponentTeam, Set<Player> players) {
         int goalS = random.randomGoal();
         int goalC = random.randomGoal();
         Game game = Game.builder()

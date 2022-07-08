@@ -16,6 +16,8 @@ import project.service.interfaces.TeamService;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -117,9 +119,10 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Set<Player> showAllPlayerTeamInfo(Integer id) {
         Set<Player> players = new HashSet<>();
+        List<Player> players1= playerRepository.findAll();
         for (Player p : playerRepository.findAll()
         ) {
-            if (p.getTeamPlayer().getTeam_id() == id) {
+            if (Objects.equals(p.getTeamPlayer().getTeam_id(), id)) {
                 players.add(p);
             }
         }
@@ -127,7 +130,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService, Integer id){
+    public void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService, Integer id) {
         for (Player p : teamService.showAllPlayerTeamInfo(id)
         ) {
             playerService.deletePlayer(p.getPlayer_id());

@@ -14,7 +14,7 @@ public class RandomResult {
         return i;
     }
 
-    public String randomResult(Integer gs, Integer gc) throws SQLException {
+    public String randomResult(Integer gs, Integer gc) {
         String resultGame;
         if (gs > gc) {
             resultGame = WIN;

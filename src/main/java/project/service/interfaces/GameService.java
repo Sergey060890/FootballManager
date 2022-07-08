@@ -22,7 +22,7 @@ public interface GameService {
     /**
      * Create game
      */
-    Game createGame(Team team, String opponentTeam, Set<Player> players) throws SQLException;
+    Game createGame(Team team, String opponentTeam, Set<Player> players);
 
     Game createGameNoPlayers(Team team,
                              String opponentTeam);

@@ -39,15 +39,18 @@
 
 
 <div class="container mt-100 mb-100" style="color: white;font-size: 120%; " >
-        <form method="post" th:each="el : ${players}">
-                <input type="checkbox" style="width:20px;height:20px;" th:value="${el.player_surname}" checked name="player"  th:text="${' '+el.player_surname}+' '+${ el.position} "
-                >
+        <input type="hidden" th:value="${game}" name="id"/>
+        <form method="post">
+            <div th:each="el : ${players}">
+                <input type="checkbox" name="player" style="width:20px;height:20px;" th:value="${el.player_surname}" checked
+                       th:text="${' '+el.player_surname}+' '+${ el.position} ">
+            </div>
+            <center>
+                <button type="submit" class="custom-btn btn-8">GO!</button>
+                <a th:href="'/team/'+${teamId}+ '/games/'+${game.id}+'/play'" class="custom-btn btn-3">BACK</a>
+            </center>
         </form>
 </div>
-<center>
-    <button type="submit" class="custom-btn btn-8">GO!</button>
-    <a th:href="'/team/'+${teamId}+ '/games/'+${game.id}+'/play'" class="custom-btn btn-3">BACK</a>
-</center>
 <!--<h3 th:text="${el.player_surname}" />-->
 
 <div id="bg_popup">
