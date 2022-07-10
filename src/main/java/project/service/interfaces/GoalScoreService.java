@@ -7,6 +7,7 @@ import project.models.GoalScore;
 import java.util.List;
 
 public interface GoalScoreService {
-    List<GoalScore> showAllGoalInfo();
+    List<GoalScore> showAllGoalPlayer(Integer id);
 
+    void deleteGoalScore(Integer id);
 }

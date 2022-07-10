@@ -71,4 +71,6 @@ public interface TeamService {
     void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService, Integer id);
 
     void deleteAllGameTeam(GameService gameService, Integer id);
+
+    void deleteAllResultTeam(ResultService resultService, Integer id);
 }

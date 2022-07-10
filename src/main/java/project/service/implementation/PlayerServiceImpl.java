@@ -2,15 +2,30 @@ package project.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.models.Game;
+import project.models.GoalConceded;
+import project.models.GoalScore;
 import project.models.Player;
+import project.models.RedCard;
+import project.models.Result;
+import project.models.Substitution;
 import project.models.Team;
+import project.models.YellowCard;
 import project.repository.PlayerRepository;
 import project.service.dto.PlayerDTO;
 import project.service.dto.mapper.PlayerMapper;
+import project.service.interfaces.GameService;
+import project.service.interfaces.GoalConcededService;
+import project.service.interfaces.GoalScoreService;
 import project.service.interfaces.PlayerService;
+import project.service.interfaces.RedCardService;
+import project.service.interfaces.ResultService;
+import project.service.interfaces.SubsService;
+import project.service.interfaces.YellowCardService;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -89,6 +104,59 @@ public class PlayerServiceImpl implements PlayerService {
     public void deletePlayer(Integer id) {
         Player player = playerRepository.findById(id).orElseThrow();
         playerRepository.delete(player);
+    }
+
+    @Override
+    public void deleteAllGoalPlayer(GoalScoreService goalScoreService, Integer id) {
+        for (GoalScore goalScore : goalScoreService.showAllGoalPlayer(id)
+        ) {
+            goalScoreService.deleteGoalScore(goalScore.getGoal_id());
+        }
+    }
+
+    @Override
+    public void deleteAllGoalConcededPlayer(GoalConcededService goalConcededService, Integer id) {
+        for (GoalConceded goalConceded : goalConcededService.showAllGoalConcededPlayer(id)
+        ) {
+            goalConcededService.deleteGoalConceded(goalConceded.getGoal_conceded_id());
+        }
+    }
+
+    @Override
+    public void deleteAllYellowCardPlayer(YellowCardService yellowCardService, Integer id) {
+        for (YellowCard yellowCard : yellowCardService.showAllYellowCardPlayer(id)
+        ) {
+            yellowCardService.deleteYellowCard(yellowCard.getYellow_card_id());
+        }
+    }
+
+    @Override
+    public void deleteAllRedCardPlayer(RedCardService redCardService, Integer id) {
+        for (RedCard redCard : redCardService.showAllRedCardPlayer(id)
+        ) {
+            redCardService.deleteRedCard(redCard.getRed_card_id());
+        }
+    }
+
+    @Override
+    public void deleteAllSubsPlayer(SubsService subsService, Integer id) {
+        for (Substitution subs : subsService.showAllSubsInPlayer(id)
+        ) {
+            subsService.deleteSubs(subs.getSubstitution_id());
+        }
+
+        for (Substitution subs : subsService.showAllSubsOutPlayer(id)
+        ) {
+            subsService.deleteSubs(subs.getSubstitution_id());
+        }
+    }
+
+    @Override
+    public void deleteAllGamePlayer(GameService gameService, Integer idTeam, Integer idPlayer) {
+        for (Game game : gameService.showAllGameTeamInfo(idTeam)
+        ) {
+            game.getPlayers().removeIf(player -> Objects.equals(player.getPlayer_id(), idPlayer));
+        }
     }
 
 }

@@ -3,14 +3,18 @@ package project.service.implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.models.Game;
+import project.models.GoalScore;
 import project.models.Player;
+import project.models.Result;
 import project.models.Team;
 import project.repository.PlayerRepository;
 import project.repository.TeamRepository;
 import project.service.dto.TeamDTO;
 import project.service.dto.mapper.TeamMapper;
 import project.service.interfaces.GameService;
+import project.service.interfaces.GoalScoreService;
 import project.service.interfaces.PlayerService;
+import project.service.interfaces.ResultService;
 import project.service.interfaces.TeamService;
 
 import javax.transaction.Transactional;
@@ -30,6 +34,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Autowired
     private PlayerRepository playerRepository;
+
 
     @Override
     public Team createTeam(String teamName, String teamCity,
@@ -142,6 +147,14 @@ public class TeamServiceImpl implements TeamService {
         for (Game game : gameService.showAllGameTeamInfo(id)
         ) {
             gameService.deleteGame(game.getGame_id());
+        }
+    }
+
+    @Override
+    public void deleteAllResultTeam(ResultService resultService, Integer id) {
+        for (Result result : resultService.showAllResultTeamInfo(id)
+        ) {
+            resultService.deleteResult(result.getId());
         }
     }
 }

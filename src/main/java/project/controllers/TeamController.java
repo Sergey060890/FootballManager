@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project.service.dto.TeamDTO;
 import project.service.interfaces.GameService;
 import project.service.interfaces.PlayerService;
+import project.service.interfaces.ResultService;
 import project.service.interfaces.TeamService;
 
 
@@ -25,6 +26,9 @@ public class TeamController {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private ResultService resultService;
 
     @GetMapping("/")//главная страница
     public String home(Model model) {
@@ -74,6 +78,7 @@ public class TeamController {
     @PostMapping("/team/{team_id}/remove")//delete
     public String teamPostDelete(@PathVariable(value = "team_id") Integer id, Model model) {
         teamService.deleteAllGameTeam(gameService, id);
+        teamService.deleteAllResultTeam(resultService, id);
         teamService.deleteAllPlayerTeam(teamService, playerService, id);
         teamService.deleteTeam(id);
         return "redirect:/team";

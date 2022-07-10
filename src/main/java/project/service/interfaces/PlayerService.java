@@ -33,9 +33,21 @@ public interface PlayerService {
 
     void deletePlayer(Integer id);
 
-    public Player findPlayerById(Integer id);
+    Player findPlayerById(Integer id);
 
-    public void updatePlayer(Integer id, String playerName, String playerSurname,
+    void updatePlayer(Integer id, String playerName, String playerSurname,
                              String country, Integer age,
                              String position);
+
+    void deleteAllGoalPlayer(GoalScoreService goalScoreService, Integer id);
+
+    void deleteAllGoalConcededPlayer(GoalConcededService goalConcededService, Integer id);
+
+    void deleteAllYellowCardPlayer(YellowCardService yellowCardService, Integer id);
+
+    void deleteAllRedCardPlayer(RedCardService redCardService, Integer id);
+
+    void deleteAllSubsPlayer(SubsService subsService, Integer id);
+
+    void deleteAllGamePlayer(GameService gameService, Integer idTeam,Integer idPlayer);
 }

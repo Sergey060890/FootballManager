@@ -5,5 +5,8 @@ import project.models.YellowCard;
 import java.util.List;
 
 public interface YellowCardService {
-    List<YellowCard> showAllYellowCardInfo();
+
+    public List<YellowCard> showAllYellowCardPlayer(Integer id);
+
+    public void deleteYellowCard(Integer id);
 }

@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.models.Player;
+import project.service.interfaces.GameService;
+import project.service.interfaces.GoalConcededService;
+import project.service.interfaces.GoalScoreService;
 import project.service.interfaces.PlayerService;
+import project.service.interfaces.RedCardService;
+import project.service.interfaces.SubsService;
 import project.service.interfaces.TeamService;
+import project.service.interfaces.YellowCardService;
 
 
 @Controller
@@ -20,6 +26,24 @@ public class PlayerController {
 
     @Autowired
     private TeamService teamService;
+
+    @Autowired
+    private GoalScoreService goalScoreService;
+
+    @Autowired
+    private GoalConcededService goalConcededService;
+
+    @Autowired
+    private YellowCardService yellowCardService;
+
+    @Autowired
+    private RedCardService redCardService;
+
+    @Autowired
+    private SubsService subsService;
+
+    @Autowired
+    private GameService gameService;
 
     @RequestMapping("/team/{team_id}/players")//вывод всех игроков
     public String teamPlayers(@PathVariable(value = "team_id") Integer id, Model model) {
@@ -65,6 +89,12 @@ public class PlayerController {
 
     @PostMapping("/team/{team_id}/players/{player_id}/info/remove")//delete game
     public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "player_id") Integer idPlayer, Model model) {
+        playerService.deleteAllGoalPlayer(goalScoreService, idPlayer);
+        playerService.deleteAllGoalConcededPlayer(goalConcededService, idPlayer);
+        playerService.deleteAllYellowCardPlayer(yellowCardService, idPlayer);
+        playerService.deleteAllRedCardPlayer(redCardService, idPlayer);
+        playerService.deleteAllSubsPlayer(subsService, idPlayer);
+        playerService.deleteAllGamePlayer(gameService, idTeam, idPlayer);
         playerService.deletePlayer(idPlayer);
         model.addAttribute("teamId", idTeam);
         return "redirect:/team/{team_id}/players";
@@ -77,6 +107,5 @@ public class PlayerController {
         model.addAttribute("teamId", idTeam);
         return "player-info";
     }
-
 
 }
