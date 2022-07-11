@@ -1,13 +1,10 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
+    <script type="text/javascript" th:src="@{../static/js/validation.js}"></script>
     <title>Creation of teams</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-<!--    <link href="../../static/css/top.css" rel="stylesheet">-->
-<!--    <link href="../../static/css/style.css" rel="stylesheet">-->
-<!--    <link href="../../static/css/table.css" rel="stylesheet">-->
-<!--    <link href="../../static/css/center.css" rel="stylesheet">-->
 </head>
 <body style="background: url(../static/images/imgonline-com-ua-Resize-MdZBEQ3BJR.jpg)">
 
@@ -15,20 +12,29 @@
 <center><h3>Adding a new command</h3></center>
 <div class="container mt-5 mb-5">
     <form action="/team/add" method="post">
-        <input type="text" name="name" placeholder="Enter the title" class="form-control"></br>
-        <input type="text" name="city" placeholder="Enter city" class="form-control"></br>
-        <input type="text" name="country" placeholder="Enter country" class="form-control"></br>
-        <input type="text" name="stadium" placeholder="Enter stadium name" class="form-control"></br>
-        <input type="text" name="coach" placeholder="Enter the trainer's first and last name" class="form-control"></br>
+
+        <input type="text" name="name" id="name" placeholder="Enter the title" class="form-control"></br>
+        <div class="span1"></div>
+
+        <input type="text" name="city" id="city" placeholder="Enter city" class="form-control"></br>
+        <div class="span2"></div>
+
+        <input type="text" name="country" id="country" placeholder="Enter country" class="form-control"></br>
+        <div class="span3"></div>
+
+        <input type="text" name="stadium" id="stadium" placeholder="Enter stadium name" class="form-control"></br>
+        <div class="span4"></div>
+
+        <input type="text" name="coach" id="coach" placeholder="Enter the trainer's first and last name" class="form-control"></br>
+        <div class="span5"></div>
         </br>
-        <center>
-            <button type="submit" class="gradient-button1">ADD TEAM</button>
-            <a th:href="'/team'" class="gradient-button1">BACK</a>
-        </center>
+            <center>
+                <button type="submit" class="gradient-button1">ADD TEAM</button>
+                <a th:href="'/team'" class="gradient-button1">BACK</a>
+            </center>
+
     </form>
 </div>
-
-<!--<div th:insert="blocks/footer :: footer"></div>-->
-<!--<script type="text/javascript" src="../static/js/validation.js"></script>-->
+<script type="text/javascript" th:src="@{/js/validation.js}"></script>
 </body>
 </html>
