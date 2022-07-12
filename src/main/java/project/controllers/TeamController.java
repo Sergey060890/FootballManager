@@ -41,7 +41,7 @@ public class TeamController {
         return "team-main";
     }
 
-    @GetMapping("/team/add")//добавление команды
+    @RequestMapping("/team/add")//добавление команды
     public String teamAdd(Model model) {
         return "team-add";
     }
