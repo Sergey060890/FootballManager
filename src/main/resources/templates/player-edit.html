@@ -9,6 +9,7 @@
     <link href="../../static/css/table.css" rel="stylesheet">
     <link href="../../static/css/center.css" rel="stylesheet">
     <link href="../../static/css/neon.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/validate3.js" defer></script>
     <style>
         h3 {
             /*background: #D9FFAD; !* Цвет фона под заголовком *!*/
@@ -27,6 +28,7 @@
     </h3>
     <div th:each="el : ${player}">
         <form method="post">
+            <button class="btn-success" type="submit" >ADD </button><br><br>
             <center>
                 <p style="color: blue">POSITION</p>
                 <select type="text" name="position" style="width: 300px;" >
@@ -42,23 +44,23 @@
                     <option>RB</option>
                 </select>
                 <p style="color: blue">NAME</p>
-                <input type="text" th:value="${el.player_name}" name="name" required placeholder="Enter name"
+                <div class="span6"></div>
+                <input type="text" th:value="${el.player_name}" name="name" id="name" required placeholder="Enter name"
                        style="width: 300px;"></br>
-
                 <p style="color: blue">SURNAME</p>
-                <input type="text" th:value="${el.player_surname}" name="surname" placeholder="Enter surname"
+                <div class="span7"></div>
+                <input type="text" th:value="${el.player_surname}" name="surname" id="surname" placeholder="Enter surname"
                        style="width: 300px;"></br>
                 <p style="color: blue">COUNTRY</p>
-                <input type="text" th:value="${el.country}" name="country" placeholder="Enter country"
+                <div class="span8"></div>
+                <input type="text" th:value="${el.country}" name="country" id="country" placeholder="Enter country"
                        style="width: 300px;"></br>
                 <p style="color: blue">AGE</p>
-                <input type="text" th:value="${el.age}" name="age" placeholder="Enter age"
+                <div class="span9"></div>
+                <input type="text" th:value="${el.age}" name="age" id="age" placeholder="Enter age"
                        style="width: 300px;"></br>
 
-
-
                 <center>
-                    <button type="submit" class="gradient-button1">SAVE</button>
                     <a th:href="'/team/'+${teamId}+ '/players'" class="gradient-button1">BACK</a>
                 </center>
             </center>
@@ -66,6 +68,6 @@
     </div>
 </center>
 <!--<div th:insert="blocks/footer :: footer"></div>-->
-<!--<script type="text/javascript" src="../static/js/validation.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/validate.js"></script>-->
 </body>
 </html>

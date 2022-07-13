@@ -10,6 +10,7 @@
             /*padding: 2px; !* Поля вокруг текста *!*/
         }
     </style>
+    <script type="text/javascript" src="/static/js/validate.js" defer></script>
 </head>
 <body th:style="'background: url(/images/MSOC_HUDDLE.jpg)'">
 <header th:insert="blocks/headerTeam"></header>
@@ -19,6 +20,7 @@
     </h3>
     <div class="container mt-5 mb-5" th:each="el : ${team}">
         <form method="post">
+            <button type="submit" class="btn-success">SAVE CHANGES</button><br><br>
             <div class="span1"></div>
             <input type="text" th:value="${el.team_name}" id="name" name="name" placeholder="Enter the title"
                    class="form-control"></br>
@@ -32,22 +34,21 @@
                    class="form-control"></br>
 
             <div class="span4"></div>
-            <input type="text" th:value="${el.stadium}" name="stadium" placeholder="Enter stadium name"
+            <input type="text" th:value="${el.stadium}" id="stadium" name="stadium" placeholder="Enter stadium name"
                    class="form-control"></br>
 
             <div class="span5"></div>
-            <input type="text" th:value="${el.coach}" name="coach" placeholder="Enter the trainer's first and last name"
+            <input type="text" th:value="${el.coach}" id="coach" name="coach" placeholder="Enter the trainer's first and last name"
                    class="form-control"></br> </br>
             <center>
-                <button type="submit" class="gradient-button1">SAVE</button>
                 <a th:href="'/team/' + ${el.team_id}" class="gradient-button1">BACK</a>
             </center>
         </form>
     </div>
     <!--<div th:insert="blocks/footer::footer"></div>-->
 
-    <!--<script type="text/javascript" src="../static/js/validation.js"></script>-->
-    <script type="text/javascript" src="../static/js/validation.js"></script>
+    <!--<script type="text/javascript" src="../static/js/validate.js"></script>-->
+    <script type="text/javascript" src="../static/js/validate.js"></script>
 </center>
 </body>
 </html>

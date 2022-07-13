@@ -11,6 +11,7 @@
             /*padding: 2px; !* Поля вокруг текста *!*/
         }
     </style>
+    <script type="text/javascript" src="/static/js/validate2.js" defer></script>
 </head>
 <body th:style="'background: url(/images/5016e2-20210418-soccer01-2000.jpg)'">
 
@@ -24,11 +25,12 @@
 <center>
     <div class="container mt-5 mb-5" th:each="el : ${game}">
         <form method="post">
-            <input type="text" th:value="${el.opponent_name}" name="opponent" placeholder="Enter opponent's name"
+            <button type="submit" class="btn-success">SAVE CHANGES</button>
+            <div class="span1"></div>
+            <input type="text" th:value="${el.opponent_name}" name="opponent" id="name" placeholder="Enter opponent's name"
                    class="form-control"></br>
 
             <center>
-                <button type="submit" class="gradient-button1">SAVE</button>
                 <a th:href="'/team/'+${teamId}+ '/games'" class="gradient-button1">BACK</a>
             </center>
         </form>
@@ -36,6 +38,6 @@
 
 </center>
 <!--<div th:insert="blocks/footer :: footer"></div>-->
-<!--<script type="text/javascript" src="../static/js/validation.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/validate.js"></script>-->
 </body>
 </html>

@@ -7,6 +7,7 @@
     <link href="../../static/css/style.css" rel="stylesheet">
     <link href="../../static/css/table.css" rel="stylesheet">
     <link href="../../static/css/center.css" rel="stylesheet">
+    <script type="text/javascript" src="/static/js/validate3.js" defer></script>
     <style>
         h3 {
             /*background: #D9FFAD; !* Цвет фона под заголовком *!*/
@@ -20,11 +21,13 @@
 <header th:insert="blocks/headerTeam"></header>
 
 <form method="post">
+
     <center>
         <h3>
             Adding a player
         </h3>
         <br>
+        <button class="btn-success" type="submit" >ADD </button><br><br>
         <label for="pos">Сhoose a position</label>
         <select name="position" id="pos" style="width: 170px;"/>
         <option value="GK">GK</option>
@@ -39,18 +42,20 @@
         <option value="RB">RB</option>
         </select>
         <br><br>
+        <div class="span6"></div>
+        <input name="name" id="name" required placeholder="Enter name" style="width:300px;"/><br><br>
+        <div class="span7"></div>
+        <input name="surname" id="surname" placeholder="Enter last name" style="width: 300px;"/><br><br>
+        <div class="span8"></div>
+        <input name="country" id="country" placeholder="Enter country" style="width: 300px;"/><br><br>
+        <div class="span9"></div>
+        <input name="age" id="age" placeholder="Enter age" style="width: 300px;"/><br><br>
 
-        <input name="name" required placeholder="Enter name" style="width:300px;"/><br><br>
-        <input name="surname" placeholder="Enter last name" style="width: 300px;"/><br><br>
-        <input name="country" placeholder="Enter country" style="width: 300px;"/><br><br>
-        <input name="age" placeholder="Enter age" style="width: 300px;"/><br><br>
-
-        <input type="submit" class="gradient-button1" value="ADD"/>
         <a th:href="'/team/'+${teamId}+ '/players'" class="gradient-button1">BACK</a>
     </center>
 </form>
 
 <!--<div th:insert="blocks/footer :: footer"></div>-->
-<!--<script type="text/javascript" src="../static/js/validation.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/validate.js"></script>-->
 </body>
 </html>

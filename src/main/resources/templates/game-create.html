@@ -10,6 +10,7 @@
             /*padding: 2px; !* Поля вокруг текста *!*/
         }
     </style>
+    <script type="text/javascript" src="/static/js/validate2.js" defer></script>
 </head>
 
 <body th:style="'background: url(/images/wp4087883.jpg)'">
@@ -18,10 +19,11 @@
 
 <div class="container mt-5 mb-5">
     <form method="post">
-        <input type="text" name="opponent" placeholder="Enter the name of the opposing team" class="form-control"></br>
+        <button class="btn-success" style="size: 150px"  type="submit" >CREATE</button><br><br>
+        <div class="span1"></div>
+        <input type="text" name="opponent" id="name" placeholder="Enter the name of the opposing team" class="form-control"></br>
         </br>
         <center>
-            <input type="submit" class="gradient-button1" value="CREATE"/>
             <a th:href="'/team/'+${team_id}+ '/games'" class="gradient-button1">BACK</a>
         </center>
 
@@ -29,6 +31,6 @@
 </div>
 
 <!--<div th:insert="blocks/footer :: footer"></div>-->
-<!--<script type="text/javascript" src="../static/js/validation.js"></script>-->
+<!--<script type="text/javascript" src="../static/js/validate.js"></script>-->
 </body>
 </html>

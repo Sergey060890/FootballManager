@@ -7,14 +7,18 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="../../static/css/button-small.css" rel="stylesheet">
-    <link href="../../static/css/button.css" rel="stylesheet">
-    <link href="../../static/css/neon.css" rel="stylesheet">
+    <link href="/static/css/button-small.css" rel="stylesheet" th:href="@{/static/css/button-small.css}">
+    <link href="/static/css/button.css" rel="stylesheet" th:href="@{/static/css/button.css}">
+    <link href="/static/css/top.css" rel="stylesheet" th:href="@{/static/css/top.css}">
+    <link href="/static/css/style.css" rel="stylesheet" th:href="@{/static/css/style.css}">
+    <link href="/static/css/table.css" rel="stylesheet" th:href="@{/static/css/table.css}">
+    <link href="/static/css/center.css" rel="stylesheet" th:href="@{/static/css/center.css}">
+    <link href="/static/css/neon.css" rel="stylesheet" th:href="@{/static/css/neon.css}">
 </head>
 <body style="background: url(../static/images/soccer-9.jpg)">
 <!--<header th:include="blocks/header.html"></header>-->
 <!--<div th:replace="blocks/header"></div>-->
-<header th:insert="blocks/header"></header>
+<!--<header th:insert="blocks/header"></header>-->
 <center>
     <h3>MY TEAMS</h3>
     <table class="table table-striped">
