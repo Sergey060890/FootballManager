@@ -22,14 +22,15 @@ import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
+
+import static project.service.implementation.ConstansImpl.*;
+
 @Service
 @Transactional
 public class StatsServiceImpl implements StatsService {
-    public static final String WIN = "WIN";
-    public static final String LOSE = "LOSE";
-    public static final String DRAW = "DRAW";
-    public static final int COUNT= 0;
-
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     PlayerService playerService;
 
@@ -48,12 +49,15 @@ public class StatsServiceImpl implements StatsService {
     @Autowired
     RedCardService redCardService;
 
+    /**
+     * Stats player count start game
+     */
     @Override
     public Integer statsPlayerCountStartGame(Integer id) {
         Player player = playerService.findPlayerById(id);
         Set<Game> gameSet = gameService
                 .showAllGameTeamInfo(player.getTeamPlayer().getTeam_id());
-        int count = COUNT;
+        int count = INT;
         for (Game g : gameSet
         ) {
             for (Player pl : g.getPlayers()
@@ -66,6 +70,9 @@ public class StatsServiceImpl implements StatsService {
         return count;
     }
 
+    /**
+     * Stats player count all game
+     */
     @Override
     public Integer statsPlayerCountAllGame(Integer id) {
         Player player = playerService.findPlayerById(id);
@@ -74,43 +81,64 @@ public class StatsServiceImpl implements StatsService {
         return gameSet.size();
     }
 
+    /**
+     * Stats player all goal
+     */
     @Override
     public Integer statsPlayerAllGoal(Integer id) {
         return goalScoreService.showAllGoalPlayer(id).size();
     }
 
+    /**
+     * Stats player all goal conceded game
+     */
     @Override
-    public Integer statsGoalkeeperConcededGoal(Integer id)  {
+    public Integer statsGoalkeeperConcededGoal(Integer id) {
         return goalConcededService.showAllGoalConcededPlayer(id).size();
     }
 
+    /**
+     * Stats player yellow card
+     */
     @Override
-    public Integer statsPlayerYellowCard(Integer id)  {
+    public Integer statsPlayerYellowCard(Integer id) {
         return yellowCardService.showAllYellowCardPlayer(id).size();
     }
 
+    /**
+     * Stats player red card
+     */
     @Override
-    public Integer statsPlayerRedCard(Integer id)  {
+    public Integer statsPlayerRedCard(Integer id) {
         return redCardService.showAllRedCardPlayer(id).size();
     }
 
+    /**
+     * Stats player start game percent
+     */
     @Override
     public String statsPlayerStartPercent(Integer id) {
         double percent = statsPlayerCountStartGame(id).doubleValue()
-                * 100 / statsPlayerCountAllGame(id).doubleValue();
-        return String.format("%.2f", percent);
+                * INT100 / statsPlayerCountAllGame(id).doubleValue();
+        return String.format(FORMAT, percent);
     }
 
+    /**
+     * Stats team count game
+     */
     @Override
-    public Integer statsTeamCountGame(Integer id)  {
+    public Integer statsTeamCountGame(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
         return gameSet.size();
     }
 
+    /**
+     * Stats team count win game
+     */
     @Override
     public Integer statsTeamWinGame(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGameWin = COUNT;
+        int countGameWin = INT;
         for (Game g : gameSet
         ) {
             if (g.getResult().equals(WIN)) {
@@ -120,10 +148,13 @@ public class StatsServiceImpl implements StatsService {
         return countGameWin;
     }
 
+    /**
+     * Stats team count lose game
+     */
     @Override
-    public Integer statsTeamLoseGame(Integer id)  {
+    public Integer statsTeamLoseGame(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGameLose = COUNT;
+        int countGameLose = INT;
         for (Game g : gameSet
         ) {
             if (g.getResult().equals(LOSE)) {
@@ -133,11 +164,13 @@ public class StatsServiceImpl implements StatsService {
         return countGameLose;
     }
 
-
+    /**
+     * Stats team count draw game
+     */
     @Override
-    public Integer statsTeamDrawGame(Integer id)  {
+    public Integer statsTeamDrawGame(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGameDraw = COUNT;
+        int countGameDraw = INT;
         for (Game g : gameSet
         ) {
             if (g.getResult().equals(DRAW)) {
@@ -147,11 +180,13 @@ public class StatsServiceImpl implements StatsService {
         return countGameDraw;
     }
 
-
+    /**
+     * Stats team goal score
+     */
     @Override
-    public Integer statsTeamGoalScore(Integer id){
+    public Integer statsTeamGoalScore(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGoalScore = COUNT;
+        int countGoalScore = INT;
         for (Game g : gameSet
         ) {
             countGoalScore += g.getGoal_score();
@@ -159,10 +194,13 @@ public class StatsServiceImpl implements StatsService {
         return countGoalScore;
     }
 
+    /**
+     * Stats team goal conceded
+     */
     @Override
-    public Integer statsTeamGoalConc(Integer id)  {
+    public Integer statsTeamGoalConc(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countGoalConc = COUNT;
+        int countGoalConc = INT;
         for (Game g : gameSet
         ) {
             countGoalConc += g.getGoals_conceded();
@@ -170,20 +208,26 @@ public class StatsServiceImpl implements StatsService {
         return countGoalConc;
     }
 
+    /**
+     * Stats team yellow card
+     */
     @Override
     public Integer statsTeamYellowCard(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countYellowCard = COUNT;
+        int countYellowCard = INT;
         for (Game g : gameSet) {
             countYellowCard += g.getYellow_card_score();
         }
         return countYellowCard;
     }
 
+    /**
+     * Stats team red card
+     */
     @Override
     public Integer statsTeamRedCard(Integer id) {
         Set<Game> gameSet = gameService.showAllGameTeamInfo(id);
-        int countRedCard = COUNT;
+        int countRedCard = INT;
         for (Game g : gameSet
         ) {
             countRedCard += g.getRed_card_score();
@@ -191,28 +235,33 @@ public class StatsServiceImpl implements StatsService {
         return countRedCard;
     }
 
+    /**
+     * Stats team lose percent
+     */
     @Override
     public String statsTeamLosePercent(Integer id) {
         double percent = statsTeamLoseGame(id).doubleValue()
-                * 100 / statsTeamCountGame(id).doubleValue();
-        return String.format("%.2f", percent);
+                * INT100 / statsTeamCountGame(id).doubleValue();
+        return String.format(FORMAT, percent);
     }
 
-    public static void main(String[] args) {
-        System.out.println();
-    }
-
+    /**
+     * Stats team win percent
+     */
     @Override
     public String statsTeamWinPercent(Integer id) {
         double percent = statsTeamWinGame(id).doubleValue()
-                * 100 / statsTeamCountGame(id).doubleValue();
-        return String.format("%.2f", percent);
+                * INT100 / statsTeamCountGame(id).doubleValue();
+        return String.format(FORMAT, percent);
     }
 
+    /**
+     * Stats team draw percent
+     */
     @Override
     public String statsTeamDrawPercent(Integer id) {
         double percent = statsTeamDrawGame(id).doubleValue()
-                * 100 / statsTeamCountGame(id).doubleValue();
-        return String.format("%.2f", percent);
+                * INT100 / statsTeamCountGame(id).doubleValue();
+        return String.format(FORMAT, percent);
     }
 }

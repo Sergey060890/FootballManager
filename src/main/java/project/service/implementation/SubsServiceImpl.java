@@ -16,9 +16,16 @@ import java.util.Objects;
 @Service
 @Transactional
 public class SubsServiceImpl implements SubsService {
+
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private SubstitutionRepository substitutionRepository;
 
+    /**
+     * Show all in substitution player
+     */
     @Override
     public List<Substitution> showAllSubsInPlayer(Integer id) {//id игрока
         List<Substitution> substitutions = new ArrayList<>();
@@ -31,6 +38,9 @@ public class SubsServiceImpl implements SubsService {
         return substitutions;
     }
 
+    /**
+     * Show all out substitution player
+     */
     @Override
     public List<Substitution> showAllSubsOutPlayer(Integer id) {//id игрока
         List<Substitution> substitutions = new ArrayList<>();
@@ -43,6 +53,9 @@ public class SubsServiceImpl implements SubsService {
         return substitutions;
     }
 
+    /**
+     * Delete substitution
+     */
     @Override
     public void deleteSubs(Integer id) {
         Substitution substitution =

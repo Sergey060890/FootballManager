@@ -14,10 +14,14 @@ import project.service.interfaces.PlayerService;
 import project.service.interfaces.ResultService;
 import project.service.interfaces.TeamService;
 
+import static project.controllers.Constants.*;
+
 
 @Controller
 public class TeamController {
-
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private TeamService teamService;
 
@@ -30,57 +34,85 @@ public class TeamController {
     @Autowired
     private ResultService resultService;
 
-    @GetMapping("/")//главная страница
+    /**
+     * Home page
+     */
+    @GetMapping("/")
     public String home(Model model) {
-        return "home";
+        return HOME;
     }
 
-    @RequestMapping("/team")//все записи
+    /**
+     * All teams
+     */
+    @RequestMapping("/team")
     public String teamMain(Model model) {
-        model.addAttribute("teams", teamService.findAll());
-        return "team-main";
+        model.addAttribute(TEAMS, teamService.findAll());
+        return TEAM_MAIN;
     }
 
-    @RequestMapping("/team/add")//добавление команды
+    /**
+     * Add team
+     */
+    @RequestMapping("/team/add")
     public String teamAdd(Model model) {
-        return "team-add";
+        return TEAM_ADD;
     }
 
-    @PostMapping("/team/add")//добавление (получение из формы)
-    public String teamPostAdd(@RequestParam String name, @RequestParam String city, @RequestParam String country,
+    /**
+     * Add team (method post)
+     */
+    @PostMapping("/team/add")
+    public String teamPostAdd(@RequestParam String name,
+                              @RequestParam String city,
+                              @RequestParam String country,
                               String stadium, String coach, Model model) {
         teamService.createTeam(name, city, country, stadium, coach);
-        return "redirect:/team";
+        return REDIRECT_TEAM;
     }
 
-    @GetMapping("/team/{team_id}")//вывод одной записи
+    /**
+     * Team Information
+     */
+    @GetMapping("/team/{team_id}")
     public String teamDetails(@PathVariable(value = "team_id") Integer id, Model model) {
         TeamDTO team = teamService.findTeamById(id);
-        model.addAttribute("team", team);
-        return "team-details";
+        model.addAttribute(TEAM, team);
+        return TEAM_DETAILS;
     }
 
-    @GetMapping("/team/{team_id}/edit")//edit
+    /**
+     * Edit team
+     */
+    @GetMapping("/team/{team_id}/edit")
     public String teamEdit(@PathVariable(value = "team_id") Integer id, Model model) {
         TeamDTO team = teamService.findTeamById(id);
-        model.addAttribute("team", team);
-        return "team-edit";
+        model.addAttribute(TEAM, team);
+        return TEAM_EDIT;
     }
 
-    @PostMapping("/team/{team_id}/edit")//edit (получение из формы)
-    public String teamPostUpdate(@PathVariable(value = "team_id") Integer id, @RequestParam String name,
-                                 @RequestParam String city, @RequestParam String country,
+    /**
+     * Edit team (method post)
+     */
+    @PostMapping("/team/{team_id}/edit")
+    public String teamPostUpdate(@PathVariable(value = "team_id") Integer id,
+                                 @RequestParam String name,
+                                 @RequestParam String city,
+                                 @RequestParam String country,
                                  String stadium, String coach, Model model) {
         teamService.updateTeam(id, name, city, country, stadium, coach);
-        return "redirect:/team/{team_id}";
+        return REDIRECT_TEAM_TEAM_ID;
     }
 
+    /**
+     * Delete team
+     */
     @PostMapping("/team/{team_id}/remove")//delete
     public String teamPostDelete(@PathVariable(value = "team_id") Integer id, Model model) {
         teamService.deleteAllGameTeam(gameService, id);
         teamService.deleteAllResultTeam(resultService, id);
         teamService.deleteAllPlayerTeam(teamService, playerService, id);
         teamService.deleteTeam(id);
-        return "redirect:/team";
+        return REDIRECT_TEAM;
     }
 }

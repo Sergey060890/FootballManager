@@ -1,6 +1,10 @@
 package project.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import project.models.Game;
 import project.models.GoalConceded;
@@ -36,10 +40,15 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class PlayerServiceImpl implements PlayerService {
-
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private PlayerRepository playerRepository;
 
+    /**
+     * Create Player
+     */
     @Override
     public Player createPlayer(String name, String surname,
                                String country, Integer age,
@@ -55,6 +64,9 @@ public class PlayerServiceImpl implements PlayerService {
         return player;
     }
 
+    /**
+     * Find all player
+     */
     @Override
     public List<PlayerDTO> findAll() {
         return playerRepository.findAll()
@@ -63,19 +75,9 @@ public class PlayerServiceImpl implements PlayerService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public Player addPlayerInTeam(Player player, Team team) {
-        player.setTeamPlayer(team);
-        playerRepository.save(player);
-        return player;
-    }
-
-    @Override
-    public void updateTeam(Player player, Team team) {
-        player.setTeamPlayer(team);
-        playerRepository.save(player);
-    }
-
+    /**
+     * Update player
+     */
     @Override
     public void updatePlayer(Integer id, String playerName, String playerSurname,
                              String country, Integer age,
@@ -89,23 +91,26 @@ public class PlayerServiceImpl implements PlayerService {
         playerRepository.save(player);
     }
 
+    /**
+     * Find player
+     */
     @Override
     public Player findPlayerById(Integer id) {
         return playerRepository.findById(id).orElseThrow();
     }
 
-    @Override
-    public void updatePosition(Player player, String position) {
-        player.setPosition(position);
-        playerRepository.save(player);
-    }
-
+    /**
+     * Delete player
+     */
     @Override
     public void deletePlayer(Integer id) {
         Player player = playerRepository.findById(id).orElseThrow();
         playerRepository.delete(player);
     }
 
+    /**
+     * Delete all goal player
+     */
     @Override
     public void deleteAllGoalPlayer(GoalScoreService goalScoreService, Integer id) {
         for (GoalScore goalScore : goalScoreService.showAllGoalPlayer(id)
@@ -114,6 +119,9 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
+    /**
+     * Delete all goal conceded player
+     */
     @Override
     public void deleteAllGoalConcededPlayer(GoalConcededService goalConcededService, Integer id) {
         for (GoalConceded goalConceded : goalConcededService.showAllGoalConcededPlayer(id)
@@ -122,6 +130,9 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
+    /**
+     * Delete all yellow card player
+     */
     @Override
     public void deleteAllYellowCardPlayer(YellowCardService yellowCardService, Integer id) {
         for (YellowCard yellowCard : yellowCardService.showAllYellowCardPlayer(id)
@@ -130,6 +141,9 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
+    /**
+     * Delete all red card player
+     */
     @Override
     public void deleteAllRedCardPlayer(RedCardService redCardService, Integer id) {
         for (RedCard redCard : redCardService.showAllRedCardPlayer(id)
@@ -138,6 +152,9 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
+    /**
+     * Delete all substitution player
+     */
     @Override
     public void deleteAllSubsPlayer(SubsService subsService, Integer id) {
         for (Substitution subs : subsService.showAllSubsInPlayer(id)
@@ -151,6 +168,9 @@ public class PlayerServiceImpl implements PlayerService {
         }
     }
 
+    /**
+     * Delete all game player
+     */
     @Override
     public void deleteAllGamePlayer(GameService gameService, Integer idTeam, Integer idPlayer) {
         for (Game game : gameService.showAllGameTeamInfo(idTeam)

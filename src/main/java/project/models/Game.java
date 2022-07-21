@@ -38,6 +38,9 @@ import java.util.Set;
 public class Game implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Game entity
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "game_id")
@@ -73,10 +76,16 @@ public class Game implements Serializable {
     @Builder.Default
     private Set<Player> players = new HashSet<>();
 
+    /**
+     * Connection with table "team"
+     */
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "team_id")
     private Team teamGame;
 
+    /**
+     * Equals
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,6 +95,9 @@ public class Game implements Serializable {
         return game_id != null && Objects.equals(game_id, game.game_id);
     }
 
+    /**
+     * HashCode
+     */
     @Override
     public int hashCode() {
         return getClass().hashCode();

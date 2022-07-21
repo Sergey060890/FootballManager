@@ -22,11 +22,16 @@ import project.service.interfaces.ResultService;
 import project.service.interfaces.TeamService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
+import static project.controllers.Constants.*;
 
 @Controller
 public class GameController {
-
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private ResultService resultService;
 
@@ -36,91 +41,125 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    @RequestMapping ("/team/{team_id}/games")//вывод всех матчей команды
+    /**
+     * All games
+     */
+    @RequestMapping("/team/{team_id}/games")
     public String teamGames(@PathVariable(value = "team_id") Integer id, Model model) {
-        model.addAttribute("games", resultService.showAllResultTeamInfo(id));
-        model.addAttribute("teamId", id);
-        return "team-games";
+        model.addAttribute(GAMES, resultService.showAllResultTeamInfo(id));
+        model.addAttribute(TEAM_ID, id);
+        return TEAM_GAMES;
     }
 
-    @GetMapping("/team/{team_id}/games/createGame")//создание игры
+    /**
+     * Creating a game
+     */
+    @GetMapping("/team/{team_id}/games/createGame")
     public String addGame(@PathVariable(value = "team_id") Integer id, Model model) {
-        model.addAttribute("teamId", id);
-        return "game-create";
+        model.addAttribute(TEAM_ID, id);
+        return GAME_CREATE;
     }
 
-    @PostMapping("/team/{team_id}/games/createGame")//добавление игры (получение из формы)
-    public String gamePostAdd(@PathVariable(value = "team_id") Integer id, @RequestParam String opponent,
+    /**
+     * Creating a game (method post)
+     */
+    @PostMapping("/team/{team_id}/games/createGame")
+    public String gamePostAdd(@PathVariable(value = "team_id") Integer id,
+                              @RequestParam String opponent,
                               Model model) {
         resultService.createResult(teamService.findTeamId(id), opponent);
-        return "redirect:/team/{team_id}/games";
+        return REDIRECT_TEAM_TEAM_ID_GAMES;
     }
 
+    /**
+     * Game change
+     */
     @GetMapping("/team/{team_id}/games/{id}/edit")//edit game
-    public String gameEdit(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame, Model model) {
-        model.addAttribute("game", resultService.findResultById(idGame));
-        model.addAttribute("teamId", idTeam);
-        return "game-edit";
+    public String gameEdit(@PathVariable(value = "team_id") Integer idTeam,
+                           @PathVariable(value = "id") Integer idGame, Model model) {
+        model.addAttribute(GAME, resultService.findResultById(idGame));
+        model.addAttribute(TEAM_ID, idTeam);
+        return GAME_EDIT;
     }
 
+    /**
+     * Game change (method post)
+     */
     @PostMapping("/team/{team_id}/games/{id}/edit")//edit game(получение из формы)
-    public String gamePostUpdate(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame,
+    public String gamePostUpdate(@PathVariable(value = "team_id") Integer idTeam,
+                                 @PathVariable(value = "id") Integer idGame,
                                  @RequestParam String opponent,
                                  Model model) {
         resultService.updateResult(idGame, opponent);
         return "redirect:/team/{team_id}/games";
     }
 
-    @PostMapping("/team/{team_id}/games/{id}/remove")//delete game
-    public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame, Model model) {
+    /**
+     * Deleting a game
+     */
+    @PostMapping("/team/{team_id}/games/{id}/remove")
+    public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam,
+                                 @PathVariable(value = "id") Integer idGame, Model model) {
         resultService.deleteResult(idGame);
-        model.addAttribute("teamId", idTeam);
-        return "redirect:/team/{team_id}/games";
+        model.addAttribute(TEAM_ID, idTeam);
+        return REDIRECT_TEAM_TEAM_ID_GAMES;
     }
 
-    @GetMapping("/team/{team_id}/games/{id}/play")//play game
-    public String gamePlay(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame, Model model) {
-        model.addAttribute("game", resultService.findResultById(idGame));
-        model.addAttribute("teamId", idTeam);
-        model.addAttribute("attendance",gameService.countAttendance());
-        model.addAttribute("referee", gameService.refereeGame());
-        return "game-play";
+    /**
+     * Play game
+     */
+    @GetMapping("/team/{team_id}/games/{id}/play")
+    public String gamePlay(@PathVariable(value = "team_id") Integer idTeam,
+                           @PathVariable(value = "id") Integer idGame, Model model) {
+        model.addAttribute(GAME, resultService.findResultById(idGame));
+        model.addAttribute(TEAM_ID, idTeam);
+        model.addAttribute(ATTENDANCE, gameService.countAttendance());
+        model.addAttribute(REFEREE, gameService.refereeGame());
+        return GAME_PLAY;
     }
 
-    @GetMapping("/team/{team_id}/games/{id}/play/startling")//start line-up game
-    public String gameStartLineUpPlay(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame, Model model) {
-        model.addAttribute("game", resultService.findResultById(idGame));
-        model.addAttribute("teamId", idTeam);
-        model.addAttribute("players",teamService.showAllPlayerTeamInfo(idTeam));
-        return "game-play-startling";
+    /**
+     * Start line-up game
+     */
+    @GetMapping("/team/{team_id}/games/{id}/play/startling")
+    public String gameStartLineUpPlay(@PathVariable(value = "team_id") Integer idTeam,
+                                      @PathVariable(value = "id") Integer idGame, Model model) {
+        model.addAttribute(GAME, resultService.findResultById(idGame));
+        model.addAttribute(TEAM_ID, idTeam);
+        model.addAttribute(PLAYERS, teamService.showAllPlayerTeamInfo(idTeam));
+        return GAME_PLAY_STARTLING;
     }
 
-
-    @PostMapping("/team/{team_id}/games/{id}/play/startling")//start line-up game
-    public String gameStartPlay(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "id") Integer idGame, @RequestParam String[] player, Model model) {
+    /**
+     * Start line-up game (method post) & Game show and stats
+     */
+    @PostMapping("/team/{team_id}/games/{id}/play/startling")
+    public String gameStartPlay(@PathVariable(value = "team_id") Integer idTeam,
+                                @PathVariable(value = "id") Integer idGame,
+                                @RequestParam String[] player, Model model) {
         Result result = resultService.findResultById(idGame);
-        if (player.length != 11) {
-            return "redirect:/team/{team_id}/games/{id}/play/startling";
+        if (player.length != INT2) {
+            return TEAM_ID_GAMES_ID_PLAY_STARTLING;
         } else {
             Set<Player> playersGo = gameService.startGamePlayer(idTeam, player);
-            if (gameService.goalkeeperСheck(playersGo) == 0
-                    || gameService.goalkeeperСheck(playersGo) > 1) {
-                return "redirect:/team/{team_id}/games/{id}/play/startling";
+            Set<Player> playersNoGo = gameService.
+                    noStartGamePlayer(idTeam, player);
+            if (gameService.goalkeeperСheck(playersGo) == INT
+                    || gameService.goalkeeperСheck(playersGo) > INT1) {
+                return TEAM_ID_GAMES_ID_PLAY_STARTLING;
             } else {
                 Game game = gameService.createGame(result.getTeamGame()
                         , result.getOpponent_name(), playersGo);
-                Set<Player> playersNoGo = gameService.
-                        noStartGamePlayer(idTeam, player);
-                List<String> info = gameService.
+                Map<Integer, Map<String, Integer>> info = gameService.
                         showGameAndStats(gameService, game, playersGo, playersNoGo);
-                model.addAttribute("teamId", idTeam);
-                model.addAttribute("gameId", idGame);
-                model.addAttribute("players", playersGo);
-                model.addAttribute("game", game);
-                model.addAttribute("info", info);
+                model.addAttribute(TEAM_ID, idTeam);
+                model.addAttribute(GAME_ID, idGame);
+                model.addAttribute(PLAYERS, playersGo);
+                model.addAttribute(GAME, game);
+                model.addAttribute(INFO, info);
                 resultService.deleteResult(idGame);
             }
         }
-        return "game-result";
+        return GAME_RESULT;
     }
 }

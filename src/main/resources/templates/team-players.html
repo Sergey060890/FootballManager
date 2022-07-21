@@ -26,9 +26,15 @@
     <table border="3" width="50%">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Position</th>
+            <th>
+                <center>Name</center>
+            </th>
+            <th>
+                <center>Surname</center>
+            </th>
+            <th>
+                <center>Position</center>
+            </th>
             <th colspan="1">
                 <center>Actions</center>
             </th>
@@ -60,7 +66,8 @@
             </td>
         </tr>
         </tbody>
-    </table><br>
+    </table>
+    <br>
 
     <a th:href="'/team/'+${team_id}+ '/players/addPlayer'" class="custom-btn btn-13">ADD</a>
     <a th:href="'/team/' + ${teamId}" class="custom-btn btn-1">BACK</a><br><br>

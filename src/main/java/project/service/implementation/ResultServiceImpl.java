@@ -18,10 +18,15 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class ResultServiceImpl implements ResultService {
-
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private ResultRepository resultRepository;
 
+    /**
+     * Create result
+     */
     @Override
     public Result createResult(Team team, String opponentTeam) {
         Result result = Result.builder()
@@ -32,6 +37,9 @@ public class ResultServiceImpl implements ResultService {
         return result;
     }
 
+    /**
+     * Show all team result
+     */
     @Override
     public Set<Result> showAllResultTeamInfo(Integer id) {
         Set<Result> results = new HashSet<>();
@@ -44,12 +52,18 @@ public class ResultServiceImpl implements ResultService {
         return results;
     }
 
+    /**
+     * Delete result
+     */
     @Override
     public void deleteResult(Integer id) {
         Result result = resultRepository.findById(id).orElseThrow();
         resultRepository.delete(result);
     }
 
+    /**
+     * Update result
+     */
     @Override
     public void updateResult(Integer id, String opponentTeam) {
         Result result = resultRepository.findById(id).orElseThrow();
@@ -57,11 +71,17 @@ public class ResultServiceImpl implements ResultService {
         resultRepository.save(result);
     }
 
+    /**
+     * Find result by id
+     */
     @Override
     public Result findResultById(Integer id) {
         return resultRepository.findById(id).orElseThrow();
     }
 
+    /**
+     * Find all result
+     */
     @Override
     public List<ResultDTO> findAll() {
         return resultRepository.findAll()

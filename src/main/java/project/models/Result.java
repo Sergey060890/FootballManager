@@ -32,9 +32,11 @@ import java.util.Objects;
 @ToString
 @Builder
 public class Result implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Result entity
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -43,10 +45,16 @@ public class Result implements Serializable {
     @Column(name = "opponent_name")
     private String opponent_name;
 
+    /**
+     * Connection with table "team"
+     */
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "team_id")
     private Team teamGame;
 
+    /**
+     * Equals
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,6 +64,9 @@ public class Result implements Serializable {
         return id != null && Objects.equals(id, result.id);
     }
 
+    /**
+     * HashCode
+     */
     @Override
     public int hashCode() {
         return getClass().hashCode();

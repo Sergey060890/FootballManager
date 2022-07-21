@@ -17,9 +17,15 @@ import java.util.Objects;
 @Service
 @Transactional
 public class YellowCardServiceImpl implements YellowCardService {
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private YellowCardRepository yellowCardRepository;
 
+    /**
+     * Show all yellow card player
+     */
     @Override
     public List<YellowCard> showAllYellowCardPlayer(Integer id) {//id игрока
         List<YellowCard> yellowCards = new ArrayList<>();
@@ -32,6 +38,9 @@ public class YellowCardServiceImpl implements YellowCardService {
         return yellowCards;
     }
 
+    /**
+     * Delete yellow card
+     */
     @Override
     public void deleteYellowCard(Integer id) {
         YellowCard yellowCard = yellowCardRepository.findById(id).orElseThrow();

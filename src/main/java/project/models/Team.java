@@ -32,7 +32,11 @@ import java.util.Set;
 @ToString
 @Builder
 public class Team {
+    private static final long serialVersionUID = 1L;
 
+    /**
+     * Team entity
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id")
@@ -53,21 +57,33 @@ public class Team {
     @Column(name = "coach")
     private String coach;
 
-    @OneToMany(mappedBy = "teamPlayer", fetch = FetchType.EAGER)//Eager
+    /**
+     * Connection with table "player-information"
+     */
+    @OneToMany(mappedBy = "teamPlayer", fetch = FetchType.EAGER)
     @ToString.Exclude
     @Builder.Default
     private Set<Player> players = new HashSet<>();
 
+    /**
+     * Connection with table "game"
+     */
     @OneToMany(mappedBy = "teamGame", fetch = FetchType.EAGER)
     @ToString.Exclude
     @Builder.Default
     private Set<Game> games = new HashSet<>();
 
+    /**
+     * Connection with table "result"
+     */
     @OneToMany(mappedBy = "teamGame", fetch = FetchType.EAGER)
     @ToString.Exclude
     @Builder.Default
     private Set<Result> results = new HashSet<>();
 
+    /**
+     * Equals
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,6 +93,9 @@ public class Team {
         return team_id != null && Objects.equals(team_id, team.team_id);
     }
 
+    /**
+     * HashCode
+     */
     @Override
     public int hashCode() {
         return getClass().hashCode();

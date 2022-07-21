@@ -1,6 +1,7 @@
 package project.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,16 @@ import project.service.interfaces.SubsService;
 import project.service.interfaces.TeamService;
 import project.service.interfaces.YellowCardService;
 
+import java.util.List;
+
+import static project.controllers.Constants.*;
+
 
 @Controller
 public class PlayerController {
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private PlayerService playerService;
 
@@ -45,50 +53,76 @@ public class PlayerController {
     @Autowired
     private GameService gameService;
 
-    @RequestMapping("/team/{team_id}/players")//вывод всех игроков
+    /**
+     * All players
+     */
+    @RequestMapping("/team/{team_id}/players")
     public String teamPlayers(@PathVariable(value = "team_id") Integer id, Model model) {
-        model.addAttribute("players", teamService.showAllPlayerTeamInfo(id));
-        model.addAttribute("teamId", id);
-        return "team-players";
+        model.addAttribute(PLAYERS, teamService.showAllPlayerTeamInfo(id));
+        model.addAttribute(TEAM_ID, id);
+        return TEAM_PLAYERS;
     }
 
-    @GetMapping("/team/{team_id}/players/addPlayer")//добавление игрока
+    /**
+     * Add player
+     */
+    @GetMapping("/team/{team_id}/players/addPlayer")
     public String addPlayer(@PathVariable(value = "team_id") Integer id, Model model) {
-        model.addAttribute("teamId", id);
-        return "player-add";
+        model.addAttribute(TEAM_ID, id);
+        return PLAYER_ADD;
     }
 
+    /**
+     * Add player (method post)
+     */
     @PostMapping("/team/{team_id}/players/addPlayer")//добавление игры (получение из формы)
-    public String playerPostAdd(@PathVariable(value = "team_id") Integer id, @RequestParam String name,
-                                @RequestParam String surname, @RequestParam String country, @RequestParam Integer age,
+    public String playerPostAdd(@PathVariable(value = "team_id") Integer id,
+                                @RequestParam String name,
+                                @RequestParam String surname,
+                                @RequestParam String country,
+                                @RequestParam Integer age,
                                 @RequestParam String position,
                                 Model model) {
         Player player = playerService.createPlayer(name, surname, country, age, position);
         teamService.addPlayerInTeam(player, teamService.findTeamId(id));
-        model.addAttribute("teamId", id);
-        return "redirect:/team/{team_id}/players";
+        model.addAttribute(TEAM_ID, id);
+        return REDIRECT_TEAM_TEAM_ID_PLAYERS;
     }
 
+    /**
+     * Edit player
+     */
     @GetMapping("/team/{team_id}/players/{player_id}/info/edit")//edit player
     public String playerEdit(@PathVariable(value = "team_id") Integer idTeam,
                              @PathVariable(value = "player_id") Integer idPlayer, Model model) {
-        model.addAttribute("player", playerService.findPlayerById(idPlayer));
-        model.addAttribute("teamId", idTeam);
-        return "player-edit";
+        model.addAttribute(PLAYER, playerService.findPlayerById(idPlayer));
+        model.addAttribute(TEAM_ID, idTeam);
+        return PLAYER_EDIT;
     }
 
+    /**
+     * Edit player (method post)
+     */
     @PostMapping("/team/{team_id}/players/{player_id}/info/edit")//edit game(получение из формы)
-    public String playerPostEdit(@PathVariable(value = "team_id") Integer id,@PathVariable(value = "player_id") Integer idPlayer, @RequestParam String name,
-                                 @RequestParam String surname, @RequestParam String country, @RequestParam Integer age,
+    public String playerPostEdit(@PathVariable(value = "team_id") Integer id,
+                                 @PathVariable(value = "player_id") Integer idPlayer,
+                                 @RequestParam String name,
+                                 @RequestParam String surname,
+                                 @RequestParam String country,
+                                 @RequestParam Integer age,
                                  @RequestParam String position,
                                  Model model) {
-        model.addAttribute("teamId", id);
+        model.addAttribute(TEAM_ID, id);
         playerService.updatePlayer(idPlayer, name, surname, country, age, position);
-        return "redirect:/team/{team_id}/players";
+        return REDIRECT_TEAM_TEAM_ID_PLAYERS;
     }
 
+    /**
+     * Delete player
+     */
     @PostMapping("/team/{team_id}/players/{player_id}/info/remove")//delete game
-    public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam, @PathVariable(value = "player_id") Integer idPlayer, Model model) {
+    public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam,
+                                 @PathVariable(value = "player_id") Integer idPlayer, Model model) {
         playerService.deleteAllGoalPlayer(goalScoreService, idPlayer);
         playerService.deleteAllGoalConcededPlayer(goalConcededService, idPlayer);
         playerService.deleteAllYellowCardPlayer(yellowCardService, idPlayer);
@@ -96,16 +130,19 @@ public class PlayerController {
         playerService.deleteAllSubsPlayer(subsService, idPlayer);
         playerService.deleteAllGamePlayer(gameService, idTeam, idPlayer);
         playerService.deletePlayer(idPlayer);
-        model.addAttribute("teamId", idTeam);
-        return "redirect:/team/{team_id}/players";
+        model.addAttribute(TEAM_ID, idTeam);
+        return REDIRECT_TEAM_TEAM_ID_PLAYERS;
     }
 
+    /**
+     * Player info
+     */
     @GetMapping("/team/{team_id}/players/{player_id}/info")//player info
     public String playerInfo(@PathVariable(value = "team_id") Integer idTeam,
                              @PathVariable(value = "player_id") Integer idPlayer, Model model) {
-        model.addAttribute("player", playerService.findPlayerById(idPlayer));
-        model.addAttribute("teamId", idTeam);
-        return "player-info";
+        model.addAttribute(PLAYER, playerService.findPlayerById(idPlayer));
+        model.addAttribute(TEAM_ID, idTeam);
+        return PLAYER_INFO;
     }
 
 }

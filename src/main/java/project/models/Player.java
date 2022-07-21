@@ -37,6 +37,9 @@ import java.util.Set;
 public class Player implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Player entity
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "player_id")
@@ -52,11 +55,14 @@ public class Player implements Serializable {
     private String country;
 
     @Column(name = "age")
-    private  Integer age;
+    private Integer age;
 
     @Column(name = "position")
     private String position;
 
+    /**
+     * Connection with table "team"
+     */
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "team_id")
     private Team teamPlayer;
@@ -69,15 +75,21 @@ public class Player implements Serializable {
     @Builder.Default
     private Set<Game> games = new HashSet<>();
 
+    /**
+     * Equals
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this)
                 != Hibernate.getClass(o)) return false;
         Player player = (Player) o;
-        return player_id!= null && Objects.equals(player_id, player.player_id);
+        return player_id != null && Objects.equals(player_id, player.player_id);
     }
 
+    /**
+     * HashCode
+     */
     @Override
     public int hashCode() {
         return getClass().hashCode();

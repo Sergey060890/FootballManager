@@ -6,9 +6,6 @@ package project.service.interfaces;
 import project.models.Player;
 import project.models.Team;
 import project.service.dto.TeamDTO;
-
-import java.sql.SQLException;
-import java.util.List;
 import java.util.Set;
 
 public interface TeamService {
@@ -28,29 +25,14 @@ public interface TeamService {
     /**
      * Delete player with team
      */
-//    void deletePlayerWithTeam(Player player)
-//            throws InvocationTargetException,
-//            NoSuchMethodException, IllegalAccessException;
-
-//    /**
-//     * Print AllTeam
-//     */
-//    List<Team> showAllTeam();
-
-    /**
-     * FindAllTeam
-     */
-//    List<TeamDTO> findAll();
 
     Iterable<Team> findAll();
 
-    Player showOnePlayerInfo(Integer id);
-
     /**
-     * Print AllPlayerInfo
+     * Print all player info
      */
 
-    Set<Player> showAllPlayerTeamInfo(Integer id) ;
+    Set<Player> showAllPlayerTeamInfo(Integer id);
 
     /**
      * UpdateTeam

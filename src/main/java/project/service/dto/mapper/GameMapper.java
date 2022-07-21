@@ -3,7 +3,9 @@ package project.service.dto.mapper;
 
 import project.models.Game;
 import project.service.dto.GameDTO;
-
+/**
+ * GameMapper
+ */
 public class GameMapper {
     public static GameDTO mapFrom(Game game) {
         return new GameDTO(game.getGame_id(),

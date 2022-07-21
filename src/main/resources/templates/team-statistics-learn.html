@@ -13,6 +13,7 @@
         h4 {
             color: blue; /* Цвет текста */
         }
+
         h3 {
             color: black; /* Цвет текста */
         }
@@ -25,47 +26,57 @@
     <h3>All team results</h3>
     <table class="table table-striped" border="3" width="50%">
         <tr>
-            <th>Opponent</th>
-            <th>Result</th>
-            <th>Score</th>
-            <th>Yellow card</th>
-            <th>Red card</th>
+            <th>
+                <center>Opponent</center>
+            </th>
+            <th>
+                <center>Result</center>
+            </th>
+            <th>
+                <center>Score</center>
+            </th>
+            <th>
+                <center>Yellow card</center>
+            </th>
+            <th>
+                <center>Red card</center>
+            </th>
         </tr>
-            <tr class="table-light" th:if="${games.empty}">
-                <td colspan="5" scope="col"><h4>No games available</h4></td>
-            </tr>
+        <tr class="table-light" th:if="${games.empty}">
+            <td colspan="5" scope="col"><h4>No games available</h4></td>
+        </tr>
 
-            <tr class="table-light" th:each="el : ${games}">
-                <td>
-                    <h3 th:text="${el.opponent_name}"/>
-                </td>
+        <tr class="table-light" th:each="el : ${games}">
+            <td>
+                <h3 th:text="${el.opponent_name}"/>
+            </td>
 
-                <td>
-                    <div th:if="${el.result=='WIN'}">
-                        <div><h3 style="color: green" th:text="${el.result}"/></div>
-                    </div>
+            <td>
+                <div th:if="${el.result=='WIN'}">
+                    <div><h3 style="color: green" th:text="${el.result}"/></div>
+                </div>
 
-                    <div th:if="${el.result=='DRAW'}">
-                        <div><h3 style="color: #11a8ab" th:text="${el.result}"/></div>
-                    </div>
+                <div th:if="${el.result=='DRAW'}">
+                    <div><h3 style="color: #11a8ab" th:text="${el.result}"/></div>
+                </div>
 
-                    <div th:if="${el.result=='LOSE'}">
-                        <div><h3 style="color: red" th:text="${el.result}"/></div>
-                    </div>
-                </td>
+                <div th:if="${el.result=='LOSE'}">
+                    <div><h3 style="color: red" th:text="${el.result}"/></div>
+                </div>
+            </td>
 
-                <td>
-                    <h3 th:text="${el.goal_score+':'+ el.goals_conceded}"/>
-                </td>
+            <td>
+                <h3 th:text="${el.goal_score+':'+ el.goals_conceded}"/>
+            </td>
 
-                <td>
-                    <h3 th:text="${el.yellow_card_score}"/>
-                </td>
+            <td>
+                <h3 th:text="${el.yellow_card_score}"/>
+            </td>
 
-                <td>
-                    <h3 th:text="${el.red_card_score}"/>
-                </td>
-            </tr>
+            <td>
+                <h3 th:text="${el.red_card_score}"/>
+            </td>
+        </tr>
         </c:forEach>
     </table>
     <a th:href="'/team/'+${team_id}+ '/statistics'" class="custom-btn btn-2">BACK</a><br><br>

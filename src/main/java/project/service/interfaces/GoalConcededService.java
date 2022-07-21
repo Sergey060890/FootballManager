@@ -6,7 +6,13 @@ import project.models.GoalConceded;
 import java.util.List;
 
 public interface GoalConcededService {
+    /**
+     * Show all goal conceded player
+     */
     List<GoalConceded> showAllGoalConcededPlayer(Integer id);
 
-    public void deleteGoalConceded(Integer id);
+    /**
+     * Delete goal conceded
+     */
+    void deleteGoalConceded(Integer id);
 }

@@ -1,4 +1,4 @@
-let reg1 = /(^[A-Za-z]{1,12})(\s{1}[A-Za-z]{1,12})?(\s{1}[A-Za-z]{1,12})?$/;
+let reg1 = /(^[A-Za-z()]{1,12})(\s{1}[A-Za-z()]{1,12})?(\s{1}[A-Za-z()]{1,12})?$/;
 
 let inp1 = document.querySelector('#name');
 

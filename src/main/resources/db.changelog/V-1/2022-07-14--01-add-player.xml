@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="16" author="Sergey060890" context="test">
+        <sql> insert into footballmanager.player_information (player_name, player_surname, country,age,position,team_id)
+              values ('Karim','Benzema', 'France',34,'FRW',1),
+                     ('Marko','Asensio', 'Spain',26,'RW',1),
+                     ('Junior','Vinicius', 'Brazil',22,'LW',1),
+                     ('Thibaut','Courtois', 'Belgium',29,'GK',1),
+                     ('Andriy','Lunin', 'Ukraine',22,'GK',1),
+                     ('Luka','Modric', 'Croatia',36,'RM',1),
+                     ('Orelien','Tchuameni', 'France',21,'CM',1),
+                     ('Lucas','Vasquez', 'Spain',31,'RB',1),
+                     ('Daniel','Carvajal', 'Spain',30,'RB',1),
+                     ('David','Alaba', 'Austria',30,'LB',1),
+                     ('Antonio','Rudiger', 'Germany',24,'CB',1),
+                     ('Eder','Militao', 'Brazil',24,'CB',1),
+                     ('Toni','Kroos', 'Germany',32,'LM',1),
+                     ('Carlos','Casemiro', 'Brazil',30,'CM',1),
+                     ('Eden','Hazard', 'Belgium',31,'LW',1),
+                     ('Borja','Mayoral', 'Spain',25,'FRW',1),
+                     ('Ferlan','Mendy', 'France',27,'LB',1),
+                     ('Eduardo','Camavinga', 'France',19,'RM',1); </sql>
+    </changeSet>
+</databaseChangeLog>

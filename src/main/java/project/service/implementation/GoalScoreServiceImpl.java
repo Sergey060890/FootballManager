@@ -1,11 +1,8 @@
 package project.service.implementation;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.models.GoalScore;
-import project.models.Result;
 import project.repository.GoalScoreRepository;
 import project.service.interfaces.GoalScoreService;
 
@@ -17,9 +14,15 @@ import java.util.Objects;
 @Service
 @Transactional
 public class GoalScoreServiceImpl implements GoalScoreService {
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private GoalScoreRepository goalScoreRepository;
 
+    /**
+     * ShowAllGoalPlayer
+     */
     @Override
     public List<GoalScore> showAllGoalPlayer(Integer id) {//id игрока
         List<GoalScore> goalScores = new ArrayList<>();
@@ -32,6 +35,9 @@ public class GoalScoreServiceImpl implements GoalScoreService {
         return goalScores;
     }
 
+    /**
+     * DeleteGoalScore
+     */
     @Override
     public void deleteGoalScore(Integer id) {
         GoalScore goalScore = goalScoreRepository.findById(id).orElseThrow();

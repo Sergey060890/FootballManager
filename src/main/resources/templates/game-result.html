@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/modal.css" rel="stylesheet" th:href="@{/css/modal.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
@@ -9,11 +10,6 @@
             crossorigin="anonymous"></script>
     <link href="../static/css/neon.css" rel="stylesheet">
     <link href="../static/css/woow.css" rel="stylesheet">
-    <style>
-        h2 {
-            color: black; /* Цвет текста */
-        }
-    </style>
     <link href="../static/css/button-small.css" rel="stylesheet" th:href="@{/css/button-small.css}">
     <link href="../static/css/button.css" rel="stylesheet" th:href="@{/css/button.css}">
     <link href="../static/css/top.css" rel="stylesheet" th:href="@{/css/top.css}">
@@ -21,43 +17,96 @@
     <link href="../static/css/center.css" rel="stylesheet" th:href="@{/css/center.css}">
     <link href="../static/css/neon.css" rel="stylesheet" th:href="@{/css/neon.css}">
     <link href="../static/css/neon.css" rel="stylesheet" th:href="@{/css/timer.css}">
+    <style>
+        h2 {
+            color: black; /* Цвет текста */
+        }
+        div {
+            color: darkblue;
+            margin: 2px;
+            font-size: 30px;
+            background: white;
+        }
+    </style>
 </head>
 <body th:style="'background: url(/images/imgonline-com-ua-Resize-poBVk5Kdh2dBa5.jpg)'">
 
 <center>
-    <table border="3" width="50%" class="form-control">
+    <table>
 
         <h2 th:text="${game.teamGame.team_name + ' VS ' + game.opponent_name }"/>
         <br>
-        <tr>
-            <center><h5 style="color:green">GAME PROGRESS:</h5></center>
-        </tr>
 
-        <tr th:each="el : ${info}">
-            <td>
+        <div id="timer"></div>
+        <div id="example" style="display: none">
+            <h5 style="color:green">GAME PROGRESS:</h5>
+            <div th:each="el : ${info.entrySet()}">
 
-                <center><h3 style="color: black;text-align: left" th:text="${el}"/></center>
-            </td>
-        </tr>
+                <div th:each="el1 : ${el.getValue().entrySet()} ">
 
+                    <div align="left" th:if="${el1.getValue==1}">
+                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
+                             th:src="@{/static/images/Goal_icon-icons.com_62267.png}" }/>
+                    </div>
+
+                    <div align="left" th:if="${el1.getValue==2}">
+                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
+                             th:src="@{/static/images/football_icon-icons.com_63740.png}"/>
+                    </div>
+
+                    <div align="left" th:if="${el1.getValue==3}">
+                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
+                             th:src="@{/static/images/Football_2-45_icon-icons.com_72118.png}"/>
+                    </div>
+
+                    <div align="left" th:if="${el1.getValue==4}">
+                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
+                             th:src="@{/static/images/Football_2-50_icon-icons.com_72106.png}"/>
+                    </div>
+
+                    <div align="left" th:if="${el1.getValue==5}">
+                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
+                             th:src="@{/static/images/football_change_player_soccer_icon_133809.png}"/>
+                    </div>
+                </div>
+
+            </div>
+            <h3 style="color: black" th:text="RESULT+':'"/></h2>
+
+            <div th:if="${game.result=='WIN'}">
+                <div><h3 style="background: darkgreen;font-size: 150%"
+                         th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
+            </div>
+
+            <div th:if="${game.result=='DRAW'}">
+                <div><h3 style="background: #11a8ab;font-size: 150%"
+                         th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
+            </div>
+
+            <div th:if="${game.result=='LOSE'}">
+                <div><h3 style="background: red;font-size: 150%"
+                         th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
+            </div>
+            <a th:href="'/team/'+${teamId}+ '/games'" class="custom-btn btn-1">EXIT</a><br><br>
+        </div>
     </table>
-
-    <h2 style="color: darkblue" th:text="RESULT"/></h2>
-
-    <div th:if="${game.result=='WIN'}">
-        <div><h3 style="background: darkgreen;font-size: 250%" th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
-    </div>
-
-    <div th:if="${game.result=='DRAW'}">
-        <div><h3 style="background: #11a8ab;font-size: 250%" th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
-    </div>
-
-    <div th:if="${game.result=='LOSE'}">
-        <div><h3 style="background: red;font-size: 250%" th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
-    </div>
-
-    <a th:href="'/team/'+${teamId}+ '/games'" class="custom-btn btn-1">EXIT</a><br><br>
 </center>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var i = 6;
+        var timer = setInterval(function () {
+            i--;
+            document.getElementById('timer').innerHTML = 'Game result after: ' + i + ' seconds';
+            if (i == 0) {
+                document.getElementById('example').style.display = 'block';
+                document.getElementById('timer').style.display = 'none';
+                clearInterval(timer);
+            }
+        }, 1000)
+    }
+</script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

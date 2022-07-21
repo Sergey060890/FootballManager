@@ -18,9 +18,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <style>
         h3 {
-            /*background: #D9FFAD; !* Цвет фона под заголовком *!*/
             color: white; /* Цвет текста */
-            /*padding: 2px; !* Поля вокруг текста *!*/
         }
     </style>
 
@@ -32,26 +30,22 @@
 <body th:style=" 'background: url(/images/imgonline-com-ua-Resize-864Nm720FpSU.jpg)'">
 <center>
     <h3>Please select starting lineup!</h3>
-</center><br><br><br>
-<!--<div th:each="el : ${players}">-->
-<!--    <h3 th:text="${el.player_surname}"/>-->
-<!--</div>-->
+</center>
+<br><br><br>
 
-
-<div class="container mt-100 mb-100" style="color: white;font-size: 120%; " >
-        <input type="hidden" th:value="${game}" name="id"/>
-        <form method="post">
-            <div th:each="el : ${players}">
-                <input type="checkbox" name="player" style="width:20px;height:20px;" th:value="${el.player_surname}" checked
-                       th:text="${' '+el.player_surname}+' '+${ el.position} ">
-            </div>
-            <center>
-                <button type="submit" class="custom-btn btn-8">GO!</button>
-                <a th:href="'/team/'+${teamId}+ '/games/'+${game.id}+'/play'" class="custom-btn btn-3">BACK</a>
-            </center>
-        </form>
+<div class="container mt-100 mb-100" style="color: white;font-size: 120%; ">
+    <input type="hidden" th:value="${game}" name="id"/>
+    <form method="post">
+        <div th:each="el : ${players}">
+            <input type="checkbox" name="player" style="width:20px;height:20px;" th:value="${el.player_surname}" checked
+                   th:text="${' '+el.player_surname}+' '+${ el.position} ">
+        </div>
+        <center>
+            <button type="submit" class="custom-btn btn-8">GO!</button>
+            <a th:href="'/team/'+${teamId}+ '/games/'+${game.id}+'/play'" class="custom-btn btn-3">BACK</a>
+        </center>
+    </form>
 </div>
-<!--<h3 th:text="${el.player_surname}" />-->
 
 <div id="bg_popup">
     <div id="popup">
@@ -62,7 +56,7 @@
         <p></p>
         <p>* If these conditions are not met, you will be returned to the composition selection page!</p>
         <center>
-            <a class="custom-btn btn-1" href="#" title="Close"
+            <a class="custom-btn btn-1 my-2 my-lg-2" href="#" title="Close"
                onclick="document.getElementById('bg_popup').style.display='none'; return false;">OK</a>
         </center>
     </div>

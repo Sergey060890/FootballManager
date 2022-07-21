@@ -3,7 +3,6 @@ package project.service.implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.models.RedCard;
-import project.models.YellowCard;
 import project.repository.RedCardRepository;
 import project.service.interfaces.RedCardService;
 
@@ -15,9 +14,15 @@ import java.util.Objects;
 @Service
 @Transactional
 public class RedCardServiceImpl implements RedCardService {
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     RedCardRepository redCardRepository;
 
+    /**
+     * Show all red card player
+     */
     @Override
     public List<RedCard> showAllRedCardPlayer(Integer id) {//id игрока
         List<RedCard> redCards = new ArrayList<>();
@@ -30,6 +35,9 @@ public class RedCardServiceImpl implements RedCardService {
         return redCards;
     }
 
+    /**
+     * Delete red card
+     */
     @Override
     public void deleteRedCard(Integer id) {
         RedCard redCard = redCardRepository.findById(id).orElseThrow();

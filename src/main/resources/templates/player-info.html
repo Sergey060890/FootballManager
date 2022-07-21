@@ -60,7 +60,8 @@
 
         <td>
             <a th:href="'/team/'+${team_id}+ '/players/'+${el.player_id}+'/info/edit'" class="custom-btn btn-4">EDIT</a>
-            <a th:href="'/team/'+${team_id}+ '/players/'+${el.player_id}+'/info/stats'" class="custom-btn btn-3">STATS</a><br>
+            <a th:href="'/team/'+${team_id}+ '/players/'+${el.player_id}+'/info/stats'"
+               class="custom-btn btn-3">STATS</a><br>
             <button type="button" class="custom-btn btn-8" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 DELETE
             </button>
@@ -90,10 +91,8 @@
         </td>
     </tr>
 </table>
- <center><a th:href="'/team/'+${teamId}+ '/players'" class="gradient-button1">BACK</a></center>
-<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"-->
-<!--        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"-->
-<!--        crossorigin="anonymous"></script>-->
+<center><a th:href="'/team/'+${teamId}+ '/players'" class="gradient-button1">BACK</a></center>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>

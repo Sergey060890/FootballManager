@@ -1,14 +1,16 @@
 package project.service.random;
-
 import project.models.Player;
 
-import java.sql.SQLException;
+
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
 import static project.service.random.ConstansRandom.*;
 
 public class RandomResult {
+
     public int randomGoal() {
         int i = MIN_GOAL + (int) (Math.random() * MAX_GOAL);
         return i;
@@ -59,6 +61,7 @@ public class RandomResult {
 
     public int timeRandomSubs() {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
+
         return i;
     }
 
@@ -80,17 +83,19 @@ public class RandomResult {
     }
 
     public Player createNoGk(Set<Player> players) {
+        Set<Player> playerSet = new HashSet<>(players);
+        playerSet.removeIf(p -> p.getPosition().equals(GK));
         Player player;
         Random rnd = new Random();
-        players.removeIf(p -> p.getPosition().equals(GK));
-        int i = rnd.nextInt(players.size());
-        player = (Player) players.toArray()[i];
+        int i = rnd.nextInt(playerSet.size());
+        player = (Player) playerSet.toArray()[i];
         return player;
     }
 
     public Player createGoalConcPlayer(Set<Player> players) {
+        Set<Player> playerSet = players;
         Player player = null;
-        for (Player player1 : players
+        for (Player player1 : playerSet
         ) {
             if (player1.getPosition().equals(GK)) {
                 player = player1;

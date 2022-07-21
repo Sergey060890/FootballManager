@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import project.models.Team;
 import project.models.YellowCard;
-
+/**
+ * YellowCardRepository
+ */
 @Repository
 public interface YellowCardRepository extends JpaRepository<YellowCard, Integer> {
 }

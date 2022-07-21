@@ -12,17 +12,32 @@ public interface ResultService {
     /**
      * Create result
      */
-    Result createResult(Team team, String opponentTeam) ;
+    Result createResult(Team team, String opponentTeam);
 
+    /**
+     * Show all result team
+     */
     Set<Result> showAllResultTeamInfo(Integer id);
 
-    void deleteResult(Integer id) ;
+    /**
+     * Delete result
+     */
+    void deleteResult(Integer id);
 
+    /**
+     * Update result
+     */
     void updateResult(Integer id,
                       String opponentTeam);
 
+    /**
+     * Find result by id
+     */
     Result findResultById(Integer id);
 
+    /**
+     * Find all result
+     */
     List<ResultDTO> findAll();
 
 }

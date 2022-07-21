@@ -14,7 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Set;
-
+/**
+ * Class Role
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -22,11 +24,11 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 public class Role {
+    private static final long serialVersionUID = 1L;
 
-    public Role(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Role entity
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -35,6 +37,9 @@ public class Role {
     @Column
     private String name;
 
+    /**
+     * Connection with table "roles"
+     */
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users;
 

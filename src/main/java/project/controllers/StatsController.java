@@ -11,8 +11,13 @@ import project.service.interfaces.PlayerService;
 import project.service.interfaces.StatsService;
 import project.service.interfaces.TeamService;
 
+import static project.controllers.Constants.*;
+
 @Controller
 public class StatsController {
+    /**
+     * Spring dependency injection autocomplete
+     */
     @Autowired
     private StatsService statsService;
 
@@ -25,44 +30,53 @@ public class StatsController {
     @Autowired
     private PlayerService playerService;
 
-    @RequestMapping("/team/{team_id}/statistics")//stats Team
+    /**
+     * Team stats
+     */
+    @RequestMapping("/team/{team_id}/statistics")
     public String teamStats(@PathVariable(value = "team_id") Integer id, Model model) {
-        model.addAttribute("team", teamService.findTeamId(id));
-        model.addAttribute("teamId", id);
-        model.addAttribute("countGame", statsService.statsTeamCountGame(id));
-        model.addAttribute("countWinGame", statsService.statsTeamWinGame(id));
-        model.addAttribute("countDrawGame", statsService.statsTeamDrawGame(id));
-        model.addAttribute("countLoseGame", statsService.statsTeamLoseGame(id));
-        model.addAttribute("countGoalScore", statsService.statsTeamGoalScore(id));
-        model.addAttribute("countGoalConceded", statsService.statsTeamGoalConc(id));
-        model.addAttribute("countYellowCard", statsService.statsTeamYellowCard(id));
-        model.addAttribute("countRedCard", statsService.statsTeamRedCard(id));
-        model.addAttribute("win", statsService.statsTeamWinPercent(id));
-        model.addAttribute("draw", statsService.statsTeamDrawPercent(id));
-        model.addAttribute("lose", statsService.statsTeamLosePercent(id));
-        return "team-statistics";
+        model.addAttribute(TEAM, teamService.findTeamId(id));
+        model.addAttribute(TEAM_ID, id);
+        model.addAttribute(COUNT_GAME, statsService.statsTeamCountGame(id));
+        model.addAttribute(COUNT_WIN_GAME, statsService.statsTeamWinGame(id));
+        model.addAttribute(COUNT_DRAW_GAME, statsService.statsTeamDrawGame(id));
+        model.addAttribute(COUNT_LOSE_GAME, statsService.statsTeamLoseGame(id));
+        model.addAttribute(COUNT_GOAL_SCORE, statsService.statsTeamGoalScore(id));
+        model.addAttribute(COUNT_GOAL_CONCEDED, statsService.statsTeamGoalConc(id));
+        model.addAttribute(COUNT_YELLOW_CARD, statsService.statsTeamYellowCard(id));
+        model.addAttribute(COUNT_RED_CARD, statsService.statsTeamRedCard(id));
+        model.addAttribute(WIN, statsService.statsTeamWinPercent(id));
+        model.addAttribute(DRAW, statsService.statsTeamDrawPercent(id));
+        model.addAttribute(LOSE, statsService.statsTeamLosePercent(id));
+        return TEAM_STATISTICS;
     }
 
-    @GetMapping("/team/{team_id}/statistics/learnMore")//подробнее
+    /**
+     * Team stats (more)
+     */
+    @GetMapping("/team/{team_id}/statistics/learnMore")
     public String teamStatsLearn(@PathVariable(value = "team_id") Integer id, Model model) {
-        model.addAttribute("teamId", id);
-        model.addAttribute("games", gameService.showAllGameTeamInfo(id));
-        return "team-statistics-learn";
+        model.addAttribute(TEAM_ID, id);
+        model.addAttribute(GAMES, gameService.showAllGameTeamInfo(id));
+        return TEAM_STATISTICS_LEARN;
     }
 
-    @GetMapping("/team/{team_id}/players/{player_id}/info/stats")//edit player
+    /**
+     * Player stats
+     */
+    @GetMapping("/team/{team_id}/players/{player_id}/info/stats")
     public String playerStats(@PathVariable(value = "team_id") Integer idTeam,
                               @PathVariable(value = "player_id") Integer idPlayer, Model model) {
-        model.addAttribute("player", playerService.findPlayerById(idPlayer));
-        model.addAttribute("teamId", idTeam);
-        model.addAttribute("countGamePlayer", statsService.statsPlayerCountAllGame(idPlayer));
-        model.addAttribute("countStartGamePlayer", statsService.statsPlayerCountStartGame(idPlayer));
-        model.addAttribute("countGoalPlayer", statsService.statsPlayerAllGoal(idPlayer));
-        model.addAttribute("countGoalConcededPlayer", statsService.statsGoalkeeperConcededGoal(idPlayer));
-        model.addAttribute("countYellowCardPlayer", statsService.statsPlayerYellowCard(idPlayer));
-        model.addAttribute("countRedCardPlayer", statsService.statsPlayerRedCard(idPlayer));
-        model.addAttribute("start",statsService.statsPlayerStartPercent(idPlayer));
-        return "player-stats";
+        model.addAttribute(PLAYER, playerService.findPlayerById(idPlayer));
+        model.addAttribute(TEAM_ID, idTeam);
+        model.addAttribute(COUNT_GAME_PLAYER, statsService.statsPlayerCountAllGame(idPlayer));
+        model.addAttribute(COUNT_START_GAME_PLAYER, statsService.statsPlayerCountStartGame(idPlayer));
+        model.addAttribute(COUNT_GOAL_PLAYER, statsService.statsPlayerAllGoal(idPlayer));
+        model.addAttribute(COUNT_GOAL_CONCEDED_PLAYER, statsService.statsGoalkeeperConcededGoal(idPlayer));
+        model.addAttribute(COUNT_YELLOW_CARD_PLAYER, statsService.statsPlayerYellowCard(idPlayer));
+        model.addAttribute(COUNT_RED_CARD_PLAYER, statsService.statsPlayerRedCard(idPlayer));
+        model.addAttribute(START, statsService.statsPlayerStartPercent(idPlayer));
+        return PLAYER_STATS;
     }
 
 }

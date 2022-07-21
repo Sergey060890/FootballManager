@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-
+/**
+ * GameDTO
+ */
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

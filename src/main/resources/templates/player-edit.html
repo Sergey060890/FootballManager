@@ -12,9 +12,7 @@
     <script type="text/javascript" src="/static/js/validate3.js" defer></script>
     <style>
         h3 {
-            /*background: #D9FFAD; !* Цвет фона под заголовком *!*/
             color: white; /* Цвет текста */
-            /*padding: 2px; !* Поля вокруг текста *!*/
         }
     </style>
 </head>
@@ -28,10 +26,11 @@
     </h3>
     <div th:each="el : ${player}">
         <form method="post">
-            <button class="btn-success" type="submit" >ADD </button><br><br>
+            <button class="btn-success" type="submit">SAVE CHANGES</button>
+            <br><br>
             <center>
                 <p style="color: blue">POSITION</p>
-                <select type="text" name="position" style="width: 300px;" >
+                <select type="text" name="position" style="width: 300px;">
                     <option>GK</option>
                     <option>FRW</option>
                     <option>RW</option>
@@ -49,7 +48,8 @@
                        style="width: 300px;"></br>
                 <p style="color: blue">SURNAME</p>
                 <div class="span7"></div>
-                <input type="text" th:value="${el.player_surname}" name="surname" id="surname" placeholder="Enter surname"
+                <input type="text" th:value="${el.player_surname}" name="surname" id="surname"
+                       placeholder="Enter surname"
                        style="width: 300px;"></br>
                 <p style="color: blue">COUNTRY</p>
                 <div class="span8"></div>
@@ -67,7 +67,6 @@
         </form>
     </div>
 </center>
-<!--<div th:insert="blocks/footer :: footer"></div>-->
-<!--<script type="text/javascript" src="../static/js/validate.js"></script>-->
+
 </body>
 </html>

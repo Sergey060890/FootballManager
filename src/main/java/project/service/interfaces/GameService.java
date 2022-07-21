@@ -24,12 +24,6 @@ public interface GameService {
      */
     Game createGame(Team team, String opponentTeam, Set<Player> players);
 
-    Game createGameNoPlayers(Team team,
-                             String opponentTeam);
-
-
-    Game addPlayersInStartGame(Integer idGame, Set<Player> players) throws SQLException;
-
     /**
      * Create Goal score
      */
@@ -56,40 +50,48 @@ public interface GameService {
     Substitution createSubs(Game game, Set<Player> playersIn, Set<Player> playersOut);
 
     /**
-     * Print AllPlayerGameInfo
-     */
-    Set<Game> showAllPlayerGame(Game game);
-
-    /**
      * Print GameStats
      */
-    List<String> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart);
+    Map<Integer, Map<String, Integer>> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart);
 
+    /**
+     * Find all
+     */
     List<GameDTO> findAll();
 
-    Map<Integer, String> showAllOpponentTeamInfo(Set<Game> gameSet);
-
+    /**
+     * ShowAllGameTeamInfo
+     */
     Set<Game> showAllGameTeamInfo(Integer id);
 
+    /**
+     * Delete game
+     */
     void deleteGame(Integer id);
 
-    void updateGame(Integer id,
-                    String opponentTeam);
-
-    Game findGameById(Integer id);
-
-    Set<Player> showAllGamePlayerInfo(Integer id);
-
+    /**
+     * StartGamePlayer
+     */
     Set<Player> startGamePlayer(Integer id, String[] players);
 
+    /**
+     * NoStartGamePlayer
+     */
     Set<Player> noStartGamePlayer(Integer id, String[] players);
 
-    Map<Integer, String> opponentRemoveTeam(GameService service, Game game, Set<Game> gameSet);
-
+    /**
+     * GoalkeeperСheck
+     */
     Integer goalkeeperСheck(Set<Player> playersGo);
 
+    /**
+     * CountAttendance
+     */
     Integer countAttendance();
 
+    /**
+     * RefereeGame
+     */
     String refereeGame();
 
 }
