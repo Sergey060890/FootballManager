@@ -46,13 +46,28 @@ public interface TeamService {
      */
     void deleteTeam(Integer id);
 
+    /**
+     * Find team by id (dto)
+     */
     TeamDTO findTeamById(Integer id);
 
+    /**
+     * Find team by id
+     */
     Team findTeamId(Integer id);
 
+    /**
+     * Delete all player team
+     */
     void deleteAllPlayerTeam(TeamService teamService, PlayerService playerService, Integer id);
 
+    /**
+     * Delete all game team
+     */
     void deleteAllGameTeam(GameService gameService, Integer id);
 
+    /**
+     * Delete all result team
+     */
     void deleteAllResultTeam(ResultService resultService, Integer id);
 }

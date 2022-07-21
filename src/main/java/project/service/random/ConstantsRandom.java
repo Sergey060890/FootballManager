@@ -1,6 +1,9 @@
 package project.service.random;
 
-public class ConstansRandom {
+public class ConstantsRandom {
+    /**
+     * Constants Random
+     */
     public static final int MIN_GOAL = 0;
     public static final int MAX_GOAL = 6;
     public static final String WIN = "WIN";
