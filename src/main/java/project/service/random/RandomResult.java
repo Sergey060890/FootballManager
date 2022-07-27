@@ -3,6 +3,8 @@ import project.models.Player;
 
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 
@@ -25,7 +27,7 @@ public class RandomResult {
         String resultGame;
         if (gs > gc) {
             resultGame = WIN;
-        } else if (gs == gc) {
+        } else if (gs.equals(gc)) {
             resultGame = DRAW;
         } else {
             resultGame = LOSE;
@@ -58,32 +60,64 @@ public class RandomResult {
     /**
      * Random Goal time
      */
-    public int timeRandomGoal() {
+    public int timeRandomGoal(List<Integer> timeMoment) {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
+        for (Integer time: timeMoment
+             ) {
+            if (Objects.equals(time, i)) {
+                timeRandomGoal(timeMoment);
+            } else {
+                return i;
+            }
+        }
         return i;
     }
 
     /**
      * Random yellow card time
      */
-    public int timeRandomYC() {
+    public int timeRandomYC(List<Integer> timeMoment) {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
+        for (Integer time: timeMoment
+        ) {
+            if (Objects.equals(time, i)) {
+                timeRandomYC(timeMoment);
+            } else {
+                return i;
+            }
+        }
         return i;
     }
 
     /**
      * Random red card time
      */
-    public int timeRandomRC() {
+    public int timeRandomRC(List<Integer> timeMoment) {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
+        for (Integer time: timeMoment
+        ) {
+            if (Objects.equals(time, i)) {
+                timeRandomRC(timeMoment);
+            } else {
+                return i;
+            }
+        }
         return i;
     }
 
     /**
      * Random substitution time
      */
-    public int timeRandomSubs() {
+    public int timeRandomSubs(List<Integer> timeMoment) {
         int i = MIN_TIME + (int) (Math.random() * MAX_TIME);
+        for (Integer time: timeMoment
+        ) {
+            if (Objects.equals(time, i)) {
+                timeRandomSubs(timeMoment);
+            } else {
+                return i;
+            }
+        }
         return i;
     }
 

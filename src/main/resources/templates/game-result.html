@@ -40,37 +40,38 @@
         <div id="timer"></div>
         <div id="example" style="display: none">
             <h5 style="color:green">GAME PROGRESS:</h5>
-            <div th:each="el : ${info.entrySet()}">
 
-                <div th:each="el1 : ${el.getValue().entrySet()} ">
 
-                    <div align="left" th:if="${el1.getValue==1}">
-                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
-                             th:src="@{/static/images/Goal_icon-icons.com_62267.png}" }/>
-                    </div>
+            <div th:each="el : ${info.entrySet()} ">
 
-                    <div align="left" th:if="${el1.getValue==2}">
-                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
-                             th:src="@{/static/images/football_icon-icons.com_63740.png}"/>
-                    </div>
+                <div align="left" th:if="${el.getValue==1}">
+                    <img th:text="${el.getKey()}"
+                         th:src="@{/static/images/Goal_icon-icons.com_62267.png}" }/>
+                </div>
 
-                    <div align="left" th:if="${el1.getValue==3}">
-                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
-                             th:src="@{/static/images/Football_2-45_icon-icons.com_72118.png}"/>
-                    </div>
+                <div align="left" th:if="${el.getValue==2}">
+                    <img th:text="${el.getKey()}"
+                         th:src="@{/static/images/football_icon-icons.com_63740.png}"/>
+                </div>
 
-                    <div align="left" th:if="${el1.getValue==4}">
-                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
-                             th:src="@{/static/images/Football_2-50_icon-icons.com_72106.png}"/>
-                    </div>
+                <div align="left" th:if="${el.getValue==3}">
+                    <img th:text="${el.getKey()}"
+                         th:src="@{/static/images/Football_2-45_icon-icons.com_72118.png}"/>
+                </div>
 
-                    <div align="left" th:if="${el1.getValue==5}">
-                        <img th:text="${' '+ el.getKey() +' '+ el1.getKey()}"
-                             th:src="@{/static/images/football_change_player_soccer_icon_133809.png}"/>
-                    </div>
+                <div align="left" th:if="${el.getValue==4}">
+                    <img th:text="${el.getKey()}"
+                         th:src="@{/static/images/Football_2-50_icon-icons.com_72106.png}"/>
+                </div>
+
+                <div align="left" th:if="${el.getValue==5}">
+                    <img th:text="${el.getKey()}"
+                         th:src="@{/static/images/football_change_player_soccer_icon_133809.png}"/>
                 </div>
 
             </div>
+
+
             <h3 style="color: black" th:text="RESULT+':'"/></h2>
 
             <div th:if="${game.result=='WIN'}">

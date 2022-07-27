@@ -1,6 +1,9 @@
 package project.controllers;
 
 public class Constants {
+    /**
+     * All controllers constants
+     */
     public static final String GAMES = "games";
     public static final String TEAM_ID = "teamId";
     public static final String GAME = "game";

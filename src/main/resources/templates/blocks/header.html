@@ -8,6 +8,12 @@
 <link href="/static/css/table.css" rel="stylesheet" th:href="@{/static/css/table.css}">
 <link href="/static/css/center.css" rel="stylesheet" th:href="@{/static/css/center.css}">
 <link href="/static/css/neon.css" rel="stylesheet" th:href="@{/static/css/neon.css}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
 
 <style>
     a:link {
@@ -20,7 +26,15 @@
     <a class="active" href="/">Main page</a>
 
     <a href="https://www.euro-football.ru/">Football news</a>
+    <form class="form-inline my-2 my-lg-2" method="post" th:action="@{/logout}">
+        <div>
+            <button style="float: right;margin-right: 2%" class="btn btn-outline-light" type="submit">Logout</button>
+        </div>
+    </form>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 </html>

@@ -11,17 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project.models.Game;
 import project.models.Player;
 import project.models.Result;
-import project.models.Team;
-import project.service.dto.PlayerDTO;
-import project.service.dto.TeamDTO;
-import project.service.implementation.PlayerServiceImpl;
-import project.service.implementation.TeamServiceImpl;
 import project.service.interfaces.GameService;
-import project.service.interfaces.PlayerService;
 import project.service.interfaces.ResultService;
 import project.service.interfaces.TeamService;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -150,7 +143,7 @@ public class GameController {
             } else {
                 Game game = gameService.createGame(result.getTeamGame()
                         , result.getOpponent_name(), playersGo);
-                Map<Integer, Map<String, Integer>> info = gameService.
+                Map<String, Integer> info = gameService.
                         showGameAndStats(gameService, game, playersGo, playersNoGo);
                 model.addAttribute(TEAM_ID, idTeam);
                 model.addAttribute(GAME_ID, idGame);

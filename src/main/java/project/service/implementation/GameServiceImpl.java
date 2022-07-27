@@ -24,6 +24,7 @@ import project.service.random.RandomResult;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -115,11 +116,11 @@ public class GameServiceImpl implements GameService {
     }
 
     /**
-     * Method goalkeeperСheck
+     * Method goalkeeperCheck
      */
     @Override
     public Integer goalkeeperСheck(Set<Player> playersGo) {
-        int count = 0;
+        int count = INT;
         for (Player p : playersGo
         ) {
             if (p.getPosition().equals(GK)) {
@@ -190,11 +191,11 @@ public class GameServiceImpl implements GameService {
      * Method createGoalScore
      */
     @Override
-    public GoalScore createGoalScore(Game game, Set<Player> players) {
+    public GoalScore createGoalScore(Game game, Set<Player> players,List<Integer> timeMoment) {
         GoalScore goal = GoalScore.builder()
                 .game(game)
                 .player(random.createNoGk(players))
-                .goal_time(random.timeRandomGoal())
+                .goal_time(random.timeRandomGoal(timeMoment))
                 .build();
         goalScoreRepository.save(goal);
         return goal;
@@ -204,11 +205,11 @@ public class GameServiceImpl implements GameService {
      * Method createGoalConceded
      */
     @Override
-    public GoalConceded createGoalConceded(Game game, Set<Player> players) {
+    public GoalConceded createGoalConceded(Game game, Set<Player> players,List<Integer> timeMoment) {
         GoalConceded goalConc = GoalConceded.builder()
                 .game(game)
                 .player(random.createGoalConcPlayer(players))
-                .conceded_time(random.timeRandomGoal())
+                .conceded_time(random.timeRandomGoal(timeMoment))
                 .build();
         goalConcededRepository.save(goalConc);
         return goalConc;
@@ -218,11 +219,11 @@ public class GameServiceImpl implements GameService {
      * Method createYellowCard
      */
     @Override
-    public YellowCard createYellowCard(Game game, Set<Player> players) {
+    public YellowCard createYellowCard(Game game, Set<Player> players,List<Integer> timeMoment) {
         YellowCard yc = YellowCard.builder()
                 .game(game)
                 .player(random.create(players))
-                .card_time(random.timeRandomYC())
+                .card_time(random.timeRandomYC(timeMoment))
                 .build();
         yellowCardRepository.save(yc);
         return yc;
@@ -232,11 +233,11 @@ public class GameServiceImpl implements GameService {
      * Method createRedCard
      */
     @Override
-    public RedCard createRedCard(Game game, Set<Player> players) {
+    public RedCard createRedCard(Game game, Set<Player> players,List<Integer> timeMoment) {
         RedCard rc = RedCard.builder()
                 .game(game)
                 .player(random.createNoGk(players))
-                .card_time(random.timeRandomRC())
+                .card_time(random.timeRandomRC(timeMoment))
                 .build();
         redCardRepository.save(rc);
         return rc;
@@ -246,12 +247,13 @@ public class GameServiceImpl implements GameService {
      * Method createSubstitution
      */
     @Override
-    public Substitution createSubs(Game game, Set<Player> playersIn, Set<Player> playersOut) {
+    public Substitution createSubs(Game game, Set<Player> playersIn,
+                                   Set<Player> playersOut,List<Integer> timeMoment) {
         Substitution subs = Substitution.builder()
                 .game(game)
                 .playerIn(random.createNoGk(playersIn))
                 .playerOut(random.createNoGk(playersOut))
-                .subs_time(random.timeRandomSubs())
+                .subs_time(random.timeRandomSubs(timeMoment))
                 .build();
         substitutionRepository.save(subs);
         return subs;
@@ -261,37 +263,43 @@ public class GameServiceImpl implements GameService {
      * Method showGameAndStats
      */
     @Override
-    public Map<Integer, Map<String, Integer>> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart) {
+    public Map<String, Integer> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart) {
         Set<Player> playersStart = new HashSet<>(start);
         Set<Player> playersNoStart = new HashSet<>(noStart);
+        List<Integer> timeMoments = new ArrayList<>();
         if (game.getRed_card_score() != INT) {
             for (int i = INT1; i <= game.getRed_card_score(); i++) {
-                RedCard redCard = service.createRedCard(game, playersStart);
+                RedCard redCard = service.createRedCard(game, playersStart,timeMoments);
+                timeMoments.add(redCard.getCard_time());
                 playersStart.remove(redCard.getPlayer());
             }
         }
 
         if (game.getGoals_conceded() != INT) {
             for (int i = INT1; i <= game.getGoals_conceded(); i++) {
-                service.createGoalConceded(game, playersStart);
+                GoalConceded gc = service.createGoalConceded(game, playersStart,timeMoments);
+                timeMoments.add(gc.getConceded_time());
             }
         }
 
         for (int i = 1; i <= random.countSubs(); i++) {
-            Substitution subs = service.createSubs(game, playersNoStart, playersStart);
+            Substitution subs = service.createSubs(game, playersNoStart, playersStart,timeMoments);
+            timeMoments.add(subs.getSubs_time());
             playersStart.remove(subs.getPlayerOut());
             playersNoStart.remove(subs.getPlayerIn());
         }
 
         if (game.getGoal_score() != INT) {
             for (int i = INT1; i <= game.getGoal_score(); i++) {
-                service.createGoalScore(game, playersStart);
+               GoalScore gs = service.createGoalScore(game, playersStart,timeMoments);
+               timeMoments.add(gs.getGoal_time());
             }
         }
 
         if (game.getYellow_card_score() != INT) {
             for (int i = INT1; i <= game.getYellow_card_score(); i++) {
-                YellowCard yc = service.createYellowCard(game, playersStart);
+                YellowCard yc = service.createYellowCard(game, playersStart,timeMoments);
+                timeMoments.add(yc.getCard_time());
                 playersStart.remove(yc.getPlayer());
             }
         }
@@ -308,11 +316,9 @@ public class GameServiceImpl implements GameService {
         List<RedCard> redAdd = new ArrayList<>();
         List<Substitution> subsAdd = new ArrayList<>();
 
-        Set<Integer> timeMoment = new HashSet<>();
         for (GoalScore goals : goal
         ) {
             if (Objects.equals(goals.getGame().getGame_id(), game.getGame_id())) {
-                timeMoment.add(goals.getGoal_time());
                 goalAdd.add(goals);
             }
         }
@@ -320,7 +326,6 @@ public class GameServiceImpl implements GameService {
         for (GoalConceded goalConceded : goalConc
         ) {
             if (Objects.equals(goalConceded.getGame().getGame_id(), game.getGame_id())) {
-                timeMoment.add(goalConceded.getConceded_time());
                 goalConcAdd.add(goalConceded);
             }
         }
@@ -328,7 +333,6 @@ public class GameServiceImpl implements GameService {
         for (YellowCard yc : yellow
         ) {
             if (Objects.equals(yc.getGame().getGame_id(), game.getGame_id())) {
-                timeMoment.add(yc.getCard_time());
                 yellowAdd.add(yc);
             }
         }
@@ -336,7 +340,6 @@ public class GameServiceImpl implements GameService {
         for (RedCard rc : red
         ) {
             if (Objects.equals(rc.getGame().getGame_id(), game.getGame_id())) {
-                timeMoment.add(rc.getCard_time());
                 redAdd.add(rc);
             }
         }
@@ -344,28 +347,35 @@ public class GameServiceImpl implements GameService {
         for (Substitution subst : subs
         ) {
             if (Objects.equals(subst.getGame().getGame_id(), game.getGame_id())) {
-                timeMoment.add(subst.getSubs_time());
                 subsAdd.add(subst);
             }
         }
 
-        final TreeSet<Integer> ts = new TreeSet(timeMoment);
+//        final TreeSet<Integer> ts = new TreeSet(timeMoment);
+        Collections.sort(timeMoments);
 
         int countGoal = INT;
         int countConc = INT;
 
-        Map<Integer, Map<String, Integer>> listInfo = new TreeMap<>();
 
-        for (int counter : ts) {
+        Map<String, Integer> listInfo = new TreeMap<>();
+
+        for (int counter : timeMoments) {
             for (GoalScore goalScore : goalAdd
             ) {
                 if (goalScore.getGoal_time() == counter) {
                     countGoal++;
-                    Map<String, Integer> map = new HashMap<>();
-                    map.put(GOOOOAAAAL
-                            + goalScore.getPlayer().getPlayer_surname() + STRING1 +
-                            countGoal + STRING + countConc, INT1);
-                    listInfo.put(goalScore.getGoal_time(), map);
+                    if (goalScore.getGoal_time() < 10) {
+                        listInfo.put("0" + goalScore.getGoal_time() + " " + GOOOOAAAAL
+                                + goalScore.getPlayer().getPlayer_surname() + STRING1 +
+                                countGoal + STRING + countConc, INT1);
+                    } else {
+                        listInfo.put(goalScore.getGoal_time() + " " + GOOOOAAAAL
+                                + goalScore.getPlayer().getPlayer_surname() + STRING1 +
+                                countGoal + STRING + countConc, INT1);
+                    }
+
+
                 }
             }
 
@@ -373,41 +383,55 @@ public class GameServiceImpl implements GameService {
             ) {
                 if (gc.getConceded_time() == counter) {
                     countConc++;
-                    Map<String, Integer> map = new HashMap<>();
-                    map.put(GOAL_MISSED
-                            + countGoal + STRING + countConc, INT2);
-                    listInfo.put(gc.getConceded_time(), map);
+                    if (gc.getConceded_time() < 10) {
+                        listInfo.put("0" + gc.getConceded_time() + " " + GOAL_MISSED
+                                + countGoal + STRING + countConc, INT2);
+                    } else {
+                        listInfo.put(gc.getConceded_time() + " " + GOAL_MISSED
+                                + countGoal + STRING + countConc, INT2);
+                    }
+
                 }
             }
 
             for (YellowCard yellowCard : yellowAdd
             ) {
                 if (yellowCard.getCard_time() == counter) {
-                    Map<String, Integer> map = new HashMap<>();
-                    map.put(YELLOW_CARD
-                            + yellowCard.getPlayer().getPlayer_surname(), INT3);
-                    listInfo.put(yellowCard.getCard_time(), map);
+                    if (yellowCard.getCard_time()<10){
+                        listInfo.put("0"+yellowCard.getCard_time() + " " + YELLOW_CARD
+                                + yellowCard.getPlayer().getPlayer_surname(),INT3);
+                    }else {
+                        listInfo.put(yellowCard.getCard_time() + " " + YELLOW_CARD
+                                + yellowCard.getPlayer().getPlayer_surname(),INT3);
+                    }
                 }
             }
 
             for (RedCard redCard : redAdd
             ) {
                 if (redCard.getCard_time() == counter) {
-                    Map<String, Integer> map = new HashMap<>();
-                    map.put(RED_CARD
-                            + redCard.getPlayer().getPlayer_surname(), INT4);
-                    listInfo.put(redCard.getCard_time(), map);
+                    if (redCard.getCard_time()<10){
+                        listInfo.put("0"+redCard.getCard_time() + " " + RED_CARD
+                                + redCard.getPlayer().getPlayer_surname(),INT4);
+                    }else {
+                        listInfo.put(redCard.getCard_time() + " " + RED_CARD
+                                + redCard.getPlayer().getPlayer_surname(),INT4);
+                    }
                 }
             }
 
             for (Substitution substitution : subsAdd
             ) {
                 if (substitution.getSubs_time() == counter) {
-                    Map<String, Integer> map = new HashMap<>();
-                    map.put(SUBSTITUTION_OUT
-                            + substitution.getPlayerOut().getPlayer_surname() +
-                            IN + substitution.getPlayerIn().getPlayer_surname(), INT5);
-                    listInfo.put(substitution.getSubs_time(), map);
+                    if (substitution.getSubs_time()<10){
+                        listInfo.put("0"+substitution.getSubs_time() + " " + SUBSTITUTION_OUT
+                                + substitution.getPlayerOut().getPlayer_surname() +
+                                IN + substitution.getPlayerIn().getPlayer_surname(), INT5);
+                    }else {
+                        listInfo.put(substitution.getSubs_time() + " " + SUBSTITUTION_OUT
+                                + substitution.getPlayerOut().getPlayer_surname() +
+                                IN + substitution.getPlayerIn().getPlayer_surname(), INT5);
+                    }
                 }
             }
         }

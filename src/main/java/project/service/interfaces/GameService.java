@@ -13,7 +13,6 @@ import project.models.Team;
 import project.models.YellowCard;
 import project.service.dto.GameDTO;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,32 +26,32 @@ public interface GameService {
     /**
      * Create Goal score
      */
-    GoalScore createGoalScore(Game game, Set<Player> players);
+    GoalScore createGoalScore(Game game, Set<Player> players,List<Integer> timeMoment);
 
     /**
      * Create Goal conceded
      */
-    GoalConceded createGoalConceded(Game game, Set<Player> players);
+    GoalConceded createGoalConceded(Game game, Set<Player> players,List<Integer> timeMoment);
 
     /**
      * Create yellow card
      */
-    YellowCard createYellowCard(Game game, Set<Player> players);
+    YellowCard createYellowCard(Game game, Set<Player> players,List<Integer> timeMoment);
 
     /**
      * Create red card
      */
-    RedCard createRedCard(Game game, Set<Player> players);
+    RedCard createRedCard(Game game, Set<Player> players,List<Integer> timeMoment);
 
     /**
      * Create substitution
      */
-    Substitution createSubs(Game game, Set<Player> playersIn, Set<Player> playersOut);
+    Substitution createSubs(Game game, Set<Player> playersIn, Set<Player> playersOut,List<Integer> timeMoment);
 
     /**
      * Print GameStats
      */
-    Map<Integer, Map<String, Integer>> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart);
+    Map<String, Integer> showGameAndStats(GameService service, Game game, Set<Player> start, Set<Player> noStart);
 
     /**
      * Find all
