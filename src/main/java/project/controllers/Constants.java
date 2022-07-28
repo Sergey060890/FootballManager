@@ -18,15 +18,15 @@ public class Constants {
     public static final String LOGIN = "login";
     public static final String TEAM_GAMES = "team-games";
     public static final String GAME_CREATE = "game-create";
-    public static final String REDIRECT_TEAM_TEAM_ID_GAMES = "redirect:/team/{team_id}/games";
+    public static final String REDIRECT_TEAM_TEAM_ID_GAMES = "redirect:/teams/{team_id}/games";
     public static final String GAME_EDIT = "game-edit";
     public static final String GAME_PLAY = "game-play";
     public static final String GAME_PLAY_STARTLING = "game-play-startling";
-    public static final String TEAM_ID_GAMES_ID_PLAY_STARTLING = "redirect:/team/{team_id}/games/{id}/play/startling";
+    public static final String TEAM_ID_GAMES_ID_PLAY_STARTLING = "redirect:/teams/{team_id}/games/{id}/play/startling";
     public static final String GAME_RESULT = "game-result";
     public static final String TEAM_PLAYERS = "team-players";
     public static final String PLAYER_ADD = "player-add";
-    public static final String REDIRECT_TEAM_TEAM_ID_PLAYERS = "redirect:/team/{team_id}/players";
+    public static final String REDIRECT_TEAM_TEAM_ID_PLAYERS = "redirect:/teams/{team_id}/players";
     public static final String PLAYER = "player";
     public static final String PLAYER_EDIT = "player-edit";
     public static final String PLAYER_INFO = "player-info";
@@ -56,9 +56,9 @@ public class Constants {
     public static final String TEAM_MAIN = "team-main";
     public static final String TEAMS = "teams";
     public static final String TEAM_ADD = "team-add";
-    public static final String REDIRECT_TEAM = "redirect:/team";
+    public static final String REDIRECT_TEAM = "redirect:/teams";
     public static final String TEAM_DETAILS = "team-details";
     public static final String TEAM_EDIT = "team-edit";
-    public static final String REDIRECT_TEAM_TEAM_ID = "redirect:/team/{team_id}";
+    public static final String REDIRECT_TEAM_TEAM_ID = "redirect:/teams/{team_id}";
 
 }

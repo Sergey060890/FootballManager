@@ -33,7 +33,7 @@ public class StatsController {
     /**
      * Team stats
      */
-    @RequestMapping("/team/{team_id}/statistics")
+    @RequestMapping("/teams/{team_id}/statistics")
     public String teamStats(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute(TEAM, teamService.findTeamId(id));
         model.addAttribute(TEAM_ID, id);
@@ -54,7 +54,7 @@ public class StatsController {
     /**
      * Team stats (more)
      */
-    @GetMapping("/team/{team_id}/statistics/learnMore")
+    @GetMapping("/teams/{team_id}/statistics/learnMore")
     public String teamStatsLearn(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute(TEAM_ID, id);
         model.addAttribute(GAMES, gameService.showAllGameTeamInfo(id));
@@ -64,7 +64,7 @@ public class StatsController {
     /**
      * Player stats
      */
-    @GetMapping("/team/{team_id}/players/{player_id}/info/stats")
+    @GetMapping("/teams/{team_id}/players/{player_id}/info/stats")
     public String playerStats(@PathVariable(value = "team_id") Integer idTeam,
                               @PathVariable(value = "player_id") Integer idPlayer, Model model) {
         model.addAttribute(PLAYER, playerService.findPlayerById(idPlayer));

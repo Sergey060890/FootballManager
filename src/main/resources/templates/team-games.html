@@ -40,11 +40,11 @@
 
 
             <td>
-                <a th:href="'/team/'+${team_id}+ '/games/'+${el.id}+'/play'"
+                <a th:href="'/teams/'+${team_id}+ '/games/'+${el.id}+'/play'"
                    class="custom-btn btn-3"><span>PLAY!</span></a>
-                <a th:href="'/team/'+${team_id}+ '/games/'+${el.id}+'/edit'" class="custom-btn btn-4"><span>EDIT</span></a>
+                <a th:href="'/teams/'+${team_id}+ '/games/'+${el.id}+'/edit'" class="custom-btn btn-4"><span>EDIT</span></a>
 
-                <form th:action="'/team/'+${team_id}+ '/games/'+${el.id}+'/remove'" method="post">
+                <form th:action="'/teams/'+${team_id}+ '/games/'+${el.id}+'/remove'" method="post">
                     <button class="custom-btn btn-8" type="submit">REFUSE</button>
                 </form>
 
@@ -53,8 +53,8 @@
         </tbody>
     </table>
 
-    <a th:href="'/team/'+${team_id}+ '/games/createGame'" class="gradient-button1">NEW GAME</a>
-    <a th:href="'/team/' + ${teamId}" class="gradient-button1">BACK</a>
+    <a th:href="'/teams/'+${team_id}+ '/games/createGame'" class="gradient-button1">NEW GAME</a>
+    <a th:href="'/teams/' + ${teamId}" class="gradient-button1">BACK</a>
 
 </center>
 

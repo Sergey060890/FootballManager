@@ -56,7 +56,7 @@ public class PlayerController {
     /**
      * All players
      */
-    @RequestMapping("/team/{team_id}/players")
+    @RequestMapping("/teams/{team_id}/players")
     public String teamPlayers(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute(PLAYERS, teamService.showAllPlayerTeamInfo(id));
         model.addAttribute(TEAM_ID, id);
@@ -66,7 +66,7 @@ public class PlayerController {
     /**
      * Add player
      */
-    @GetMapping("/team/{team_id}/players/addPlayer")
+    @GetMapping("/teams/{team_id}/players/addPlayer")
     public String addPlayer(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute(TEAM_ID, id);
         return PLAYER_ADD;
@@ -75,7 +75,7 @@ public class PlayerController {
     /**
      * Add player (method post)
      */
-    @PostMapping("/team/{team_id}/players/addPlayer")//добавление игры (получение из формы)
+    @PostMapping("/teams/{team_id}/players/addPlayer")//добавление игры (получение из формы)
     public String playerPostAdd(@PathVariable(value = "team_id") Integer id,
                                 @RequestParam String name,
                                 @RequestParam String surname,
@@ -92,7 +92,7 @@ public class PlayerController {
     /**
      * Edit player
      */
-    @GetMapping("/team/{team_id}/players/{player_id}/info/edit")//edit player
+    @GetMapping("/teams/{team_id}/players/{player_id}/info/edit")//edit player
     public String playerEdit(@PathVariable(value = "team_id") Integer idTeam,
                              @PathVariable(value = "player_id") Integer idPlayer, Model model) {
         model.addAttribute(PLAYER, playerService.findPlayerById(idPlayer));
@@ -103,7 +103,7 @@ public class PlayerController {
     /**
      * Edit player (method post)
      */
-    @PostMapping("/team/{team_id}/players/{player_id}/info/edit")//edit game(получение из формы)
+    @PostMapping("/teams/{team_id}/players/{player_id}/info/edit")//edit game(получение из формы)
     public String playerPostEdit(@PathVariable(value = "team_id") Integer id,
                                  @PathVariable(value = "player_id") Integer idPlayer,
                                  @RequestParam String name,
@@ -120,7 +120,7 @@ public class PlayerController {
     /**
      * Delete player
      */
-    @PostMapping("/team/{team_id}/players/{player_id}/info/remove")//delete game
+    @PostMapping("/teams/{team_id}/players/{player_id}/info/remove")//delete game
     public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam,
                                  @PathVariable(value = "player_id") Integer idPlayer, Model model) {
         playerService.deleteAllGoalPlayer(goalScoreService, idPlayer);
@@ -137,7 +137,7 @@ public class PlayerController {
     /**
      * Player info
      */
-    @GetMapping("/team/{team_id}/players/{player_id}/info")//player info
+    @GetMapping("/teams/{team_id}/players/{player_id}/info")//player info
     public String playerInfo(@PathVariable(value = "team_id") Integer idTeam,
                              @PathVariable(value = "player_id") Integer idPlayer, Model model) {
         model.addAttribute(PLAYER, playerService.findPlayerById(idPlayer));

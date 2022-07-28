@@ -60,13 +60,13 @@
     <div>
         <div th:each="el : ${team}">
 
-            <a th:href="'/team/' + ${el.team_id} + '/edit'" class="gradient-button1">EDIT TEAM</a>
+            <a th:href="'/teams/' + ${el.team_id} + '/edit'" class="gradient-button1">EDIT TEAM</a>
 
             <button type="button" class="gradient-button1" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 DELETE TEAM
             </button>
 
-            <a th:href="'/team/'" class="gradient-button1">BACK</a>
+            <a th:href="'/teams/'" class="gradient-button1">BACK</a>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -81,7 +81,7 @@
                             When a team is deleted, all its players, games and statistics will be lost!
                         </div>
                         <div class="modal-footer">
-                            <form th:action="'/team/'+${el.team_id}+ '/remove' " method="post">
+                            <form th:action="'/teams/'+${el.team_id}+ '/remove' " method="post">
                                 <button class="btn btn-danger" type="submit">DELETE</button>
                             </form>
                             <button class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>

@@ -59,8 +59,8 @@
         </td>
 
         <td>
-            <a th:href="'/team/'+${team_id}+ '/players/'+${el.player_id}+'/info/edit'" class="custom-btn btn-4">EDIT</a>
-            <a th:href="'/team/'+${team_id}+ '/players/'+${el.player_id}+'/info/stats'"
+            <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/edit'" class="custom-btn btn-4">EDIT</a>
+            <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/stats'"
                class="custom-btn btn-3">STATS</a><br>
             <button type="button" class="custom-btn btn-8" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 DELETE
@@ -79,7 +79,7 @@
                             Are you sure you want to remove a player from this team?
                         </div>
                         <div class="modal-footer">
-                            <form th:action="'/team/'+${team_id}+ '/players/'+${el.player_id}+'/info/remove'"
+                            <form th:action="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/remove'"
                                   method="post">
                                 <button class="btn btn-danger" type="submit">YES</button>
                             </form>
@@ -91,7 +91,7 @@
         </td>
     </tr>
 </table>
-<center><a th:href="'/team/'+${teamId}+ '/players'" class="gradient-button1">BACK</a></center>
+<center><a th:href="'/teams/'+${teamId}+ '/players'" class="gradient-button1">BACK</a></center>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"

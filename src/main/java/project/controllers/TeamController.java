@@ -45,7 +45,7 @@ public class TeamController {
     /**
      * All teams
      */
-    @RequestMapping("/team")
+    @RequestMapping("/teams")
     public String teamMain(Model model) {
         model.addAttribute(TEAMS, teamService.findAll());
         return TEAM_MAIN;
@@ -54,7 +54,7 @@ public class TeamController {
     /**
      * Add team
      */
-    @RequestMapping("/team/add")
+    @RequestMapping("/teams/add")
     public String teamAdd(Model model) {
         return TEAM_ADD;
     }
@@ -62,7 +62,7 @@ public class TeamController {
     /**
      * Add team (method post)
      */
-    @PostMapping("/team/add")
+    @PostMapping("/teams/add")
     public String teamPostAdd(@RequestParam String name,
                               @RequestParam String city,
                               @RequestParam String country,
@@ -74,7 +74,7 @@ public class TeamController {
     /**
      * Team Information
      */
-    @GetMapping("/team/{team_id}")
+    @GetMapping("/teams/{team_id}")
     public String teamDetails(@PathVariable(value = "team_id") Integer id, Model model) {
         TeamDTO team = teamService.findTeamById(id);
         model.addAttribute(TEAM, team);
@@ -84,7 +84,7 @@ public class TeamController {
     /**
      * Edit team
      */
-    @GetMapping("/team/{team_id}/edit")
+    @GetMapping("/teams/{team_id}/edit")
     public String teamEdit(@PathVariable(value = "team_id") Integer id, Model model) {
         TeamDTO team = teamService.findTeamById(id);
         model.addAttribute(TEAM, team);
@@ -94,7 +94,7 @@ public class TeamController {
     /**
      * Edit team (method post)
      */
-    @PostMapping("/team/{team_id}/edit")
+    @PostMapping("/teams/{team_id}/edit")
     public String teamPostUpdate(@PathVariable(value = "team_id") Integer id,
                                  @RequestParam String name,
                                  @RequestParam String city,
@@ -107,7 +107,7 @@ public class TeamController {
     /**
      * Delete team
      */
-    @PostMapping("/team/{team_id}/remove")//delete
+    @PostMapping("/teams/{team_id}/remove")//delete
     public String teamPostDelete(@PathVariable(value = "team_id") Integer id, Model model) {
         teamService.deleteAllGameTeam(gameService, id);
         teamService.deleteAllResultTeam(resultService, id);

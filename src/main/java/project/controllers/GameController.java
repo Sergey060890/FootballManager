@@ -37,7 +37,7 @@ public class GameController {
     /**
      * All games
      */
-    @RequestMapping("/team/{team_id}/games")
+    @RequestMapping("/teams/{team_id}/games")
     public String teamGames(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute(GAMES, resultService.showAllResultTeamInfo(id));
         model.addAttribute(TEAM_ID, id);
@@ -47,7 +47,7 @@ public class GameController {
     /**
      * Creating a game
      */
-    @GetMapping("/team/{team_id}/games/createGame")
+    @GetMapping("/teams/{team_id}/games/createGame")
     public String addGame(@PathVariable(value = "team_id") Integer id, Model model) {
         model.addAttribute(TEAM_ID, id);
         return GAME_CREATE;
@@ -56,7 +56,7 @@ public class GameController {
     /**
      * Creating a game (method post)
      */
-    @PostMapping("/team/{team_id}/games/createGame")
+    @PostMapping("/teams/{team_id}/games/createGame")
     public String gamePostAdd(@PathVariable(value = "team_id") Integer id,
                               @RequestParam String opponent,
                               Model model) {
@@ -67,7 +67,7 @@ public class GameController {
     /**
      * Game change
      */
-    @GetMapping("/team/{team_id}/games/{id}/edit")//edit game
+    @GetMapping("/teams/{team_id}/games/{id}/edit")//edit game
     public String gameEdit(@PathVariable(value = "team_id") Integer idTeam,
                            @PathVariable(value = "id") Integer idGame, Model model) {
         model.addAttribute(GAME, resultService.findResultById(idGame));
@@ -78,7 +78,7 @@ public class GameController {
     /**
      * Game change (method post)
      */
-    @PostMapping("/team/{team_id}/games/{id}/edit")//edit game(получение из формы)
+    @PostMapping("/teams/{team_id}/games/{id}/edit")//edit game(получение из формы)
     public String gamePostUpdate(@PathVariable(value = "team_id") Integer idTeam,
                                  @PathVariable(value = "id") Integer idGame,
                                  @RequestParam String opponent,
@@ -90,7 +90,7 @@ public class GameController {
     /**
      * Deleting a game
      */
-    @PostMapping("/team/{team_id}/games/{id}/remove")
+    @PostMapping("/teams/{team_id}/games/{id}/remove")
     public String gamePostDelete(@PathVariable(value = "team_id") Integer idTeam,
                                  @PathVariable(value = "id") Integer idGame, Model model) {
         resultService.deleteResult(idGame);
@@ -101,7 +101,7 @@ public class GameController {
     /**
      * Play game
      */
-    @GetMapping("/team/{team_id}/games/{id}/play")
+    @GetMapping("/teams/{team_id}/games/{id}/play")
     public String gamePlay(@PathVariable(value = "team_id") Integer idTeam,
                            @PathVariable(value = "id") Integer idGame, Model model) {
         model.addAttribute(GAME, resultService.findResultById(idGame));
@@ -114,7 +114,7 @@ public class GameController {
     /**
      * Start line-up game
      */
-    @GetMapping("/team/{team_id}/games/{id}/play/startling")
+    @GetMapping("/teams/{team_id}/games/{id}/play/startling")
     public String gameStartLineUpPlay(@PathVariable(value = "team_id") Integer idTeam,
                                       @PathVariable(value = "id") Integer idGame, Model model) {
         model.addAttribute(GAME, resultService.findResultById(idGame));
@@ -126,7 +126,7 @@ public class GameController {
     /**
      * Start line-up game (method post) & Game show and stats
      */
-    @PostMapping("/team/{team_id}/games/{id}/play/startling")
+    @PostMapping("/teams/{team_id}/games/{id}/play/startling")
     public String gameStartPlay(@PathVariable(value = "team_id") Integer idTeam,
                                 @PathVariable(value = "id") Integer idGame,
                                 @RequestParam String[] player, Model model) {

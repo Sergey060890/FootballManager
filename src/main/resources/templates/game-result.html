@@ -88,7 +88,7 @@
                 <div><h3 style="background: red;font-size: 150%"
                          th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
             </div>
-            <a th:href="'/team/'+${teamId}+ '/games'" class="custom-btn btn-1">EXIT</a><br><br>
+            <a th:href="'/teams/'+${teamId}+ '/games'" class="custom-btn btn-1">EXIT</a><br><br>
         </div>
     </table>
 </center>
