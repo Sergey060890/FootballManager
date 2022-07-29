@@ -16,25 +16,25 @@
 <header th:insert="blocks/header"></header>
 
 <div class="container mt-5 mb-5">
-    <center><h3>Adding a new command</h3></center>
+    <center><h3 th:text = "#{add_team}"></h3></center>
     <form action="/team/add" method="post">
-        <button class="btn-success" type="submit">ADD TEAM</button>
+        <button th:text = "#{add}" class="btn-success" type="submit"></button>
         <br><br>
         <div class="span1"></div>
-        <input type="text" name="name" id="name" placeholder="Enter the title" class="form-control"></br>
+        <input type="text" name="name" id="name" th:placeholder="#{add_title}" class="form-control"></br>
         <div class="span2"></div>
-        <input type="text" name="city" id="city" placeholder="Enter city" class="form-control"></br>
+        <input type="text" name="city" id="city" th:placeholder="#{add_city}" class="form-control"></br>
         <div class="span3"></div>
-        <input type="text" name="country" id="country" placeholder="Enter country" class="form-control"></br>
+        <input type="text" name="country" id="country" th:placeholder="#{add_country}" class="form-control"></br>
         <div class="span4"></div>
-        <input type="text" name="stadium" id="stadium" placeholder="Enter stadium name" class="form-control"></br>
+        <input type="text" name="stadium" id="stadium" th:placeholder="#{add_stadium}" class="form-control"></br>
         <div class="span5"></div>
-        <input type="text" name="coach" id="coach" placeholder="Enter the trainer's first and last name"
+        <input type="text" name="coach" id="coach" th:placeholder="#{add_trainer}"
                class="form-control"></br>
 
         </br>
         <center>
-            <a th:href="'/teams/'" class="gradient-button1">BACK</a>
+            <a th:text="#{back}" th:href="'/teams/'" class="gradient-button1"></a>
         </center>
     </form>
 </div>
