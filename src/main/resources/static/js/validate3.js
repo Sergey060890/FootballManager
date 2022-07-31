@@ -18,19 +18,19 @@ let span4 = document.querySelector('.span9');
 document.querySelector('.btn-success').onclick = function (e) {
     if (!validate(reg1, inp1.value)) {
         e.preventDefault();
-        notValid(inp1, span1, 'Incorrect data in the "name" field!');
+        notValid(inp1, span1, 'Неверные данные в поле "имя"! /Incorrect data in the "name" field!');
     }
     if (!validate(reg2, inp2.value)) {
         e.preventDefault();
-        notValid(inp2, span2, 'Incorrect data in the "surname" field!');
+        notValid(inp2, span2, 'Неверные данные в поле "фамилия"! /Incorrect data in the "surname" field!');
     }
     if (!validate(reg3, inp3.value)) {
         e.preventDefault();
-        notValid(inp3, span3, 'Incorrect data in the "country" field!');
+        notValid(inp3, span3, 'Неверные данные в поле "страна"! /Incorrect data in the "country" field!');
     }
     if (!validate(reg4, inp4.value)) {
         e.preventDefault();
-        notValid(inp4, span4, 'Incorrect data in the "age" field!');
+        notValid(inp4, span4, 'Неверные данные в поле "возраст"! /Incorrect data in the "age" field!');
     }
 
 };

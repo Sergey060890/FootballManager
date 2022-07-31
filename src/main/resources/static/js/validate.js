@@ -19,23 +19,23 @@ let span5 = document.querySelector('.span5');
 document.querySelector('.btn-success').onclick = function (e) {
     if (!validate(reg1, inp1.value)) {
         e.preventDefault();
-        notValid(inp1, span1, 'Incorrect data in the "name" field!');
+        notValid(inp1, span1, 'Неверные данные в поле "имя"! /Incorrect data in the "name" field!');
     }
     if (!validate(reg2, inp2.value)) {
         e.preventDefault();
-        notValid(inp2, span2, 'Incorrect data in the "city" field!');
+        notValid(inp2, span2, 'Неверные данные в поле "город"! /Incorrect data in the "city" field!');
     }
     if (!validate(reg3, inp3.value)) {
         e.preventDefault();
-        notValid(inp3, span3, 'Incorrect data in the "country" field!');
+        notValid(inp3, span3, 'Неверные данные в поле "страна"! /Incorrect data in the "country" field!');
     }
     if (!validate(reg4, inp4.value)) {
         e.preventDefault();
-        notValid(inp4, span4, 'Incorrect data in the "stadium" field!');
+        notValid(inp4, span4, 'Неверные данные в поле "стадион"! /Incorrect data in the "stadium" field!');
     }
     if (!validate(reg5, inp5.value)) {
         e.preventDefault();
-        notValid(inp5, span5, 'Incorrect data in the "coach" field!');
+        notValid(inp5, span5, 'Неверные данные в поле "тренер"! /Incorrect data in the "coach" field!');
     }
 };
 

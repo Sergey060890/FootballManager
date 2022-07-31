@@ -23,14 +23,18 @@
 </head>
 <body>
 <div class="topnav">
-    <a class="active" href="/">Main page</a>
-    <a th:href="'/teams/'+${team_id}+ '/games' ">Play games</a>
-    <a th:href="'/teams/'+${team_id}+ '/players' ">Team line-up</a>
-    <a th:href="'/teams/'+${team_id}+ '/statistics' ">Team statistics</a>
+    <a th:text="#{main}" class="active" href="/">Main page</a>
+    <a th:text="#{play}" th:href="'/teams/'+${team_id}+ '/games' "></a>
+    <a th:text="#{line}" th:href="'/teams/'+${team_id}+ '/players' "></a>
+    <a th:text="#{stats}" th:href="'/teams/'+${team_id}+ '/statistics' "></a>
 
     <form class="form-inline my-2 my-lg-2" method="post" th:action="@{/logout}">
         <div>
-            <button style="float: right;margin-right: 2%" class="btn btn-outline-light" type="submit">Logout</button>
+            <a style="float: right;" th:href="@{'?locale=en'}"><img src="/static/images/imgonline-com-ua-Resize-vRj63aqdMNqYK.png"></a>
+            <a style="float: right;" th:href="@{'?locale=ru'}"><img src="/static/images/imgonline-com-ua-Resize-o9j5SI4A74.png"></a>
+        </div>
+        <div>
+            <button  th:text="#{logouts}" style="float: right;margin-right: 2%" class="btn btn-outline-light" type="submit"></button>
         </div>
     </form>
 

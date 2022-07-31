@@ -15,19 +15,19 @@
 
         <tr>
             <th>
-                <center>NAME</center>
+                <center th:text="#{name_team}"></center>
             </th>
             <th>
-                <center>CITY</center>
+                <center th:text="#{city}"></center>
             </th>
             <th>
-                <center>COUNTRY</center>
+                <center th:text="#{country}"></center>
             </th>
             <th>
-                <center>STADIUM</center>
+                <center th:text="#{stadium}"></center>
             </th>
             <th>
-                <center>COACH</center>
+                <center th:text="#{coach}"></center>
             </th>
         </tr>
 
@@ -60,13 +60,12 @@
     <div>
         <div th:each="el : ${team}">
 
-            <a th:href="'/teams/' + ${el.team_id} + '/edit'" class="gradient-button1">EDIT TEAM</a>
+            <a th:href="'/teams/' + ${el.team_id} + '/edit'" class="gradient-button1" th:text="#{edit_team}"></a>
 
-            <button type="button" class="gradient-button1" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                DELETE TEAM
+            <button type="button" class="gradient-button1" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="#{delete_team}">
             </button>
 
-            <a th:href="'/teams/'" class="gradient-button1">BACK</a>
+            <a th:href="'/teams/'" class="gradient-button1" th:text="#{back}"></a>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                  aria-hidden="true">
@@ -74,17 +73,16 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <center>
-                                <h3 class="modal-title" id="exampleModalLabel">Attention!</h3>
+                                <h3 class="modal-title" id="exampleModalLabel" th:text="#{attention}"></h3>
                             </center>
                         </div>
-                        <div class="modal-body">
-                            When a team is deleted, all its players, games and statistics will be lost!
+                        <div class="modal-body" th:text="#{text_1}">
                         </div>
                         <div class="modal-footer">
                             <form th:action="'/teams/'+${el.team_id}+ '/remove' " method="post">
-                                <button class="btn btn-danger" type="submit">DELETE</button>
+                                <button class="btn btn-danger" type="submit" th:text="#{delete}"></button>
                             </form>
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                            <button class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{cancel}"></button>
                         </div>
                     </div>
                 </div>

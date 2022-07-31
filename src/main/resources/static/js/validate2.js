@@ -8,7 +8,7 @@ let span1 = document.querySelector('.span1');
 document.querySelector('.btn-success').onclick = function (e) {
     if (!validate(reg1, inp1.value)) {
         e.preventDefault();
-        notValid(inp1, span1, 'Incorrect data!');
+        notValid(inp1, span1, 'Неверные данные!/Incorrect data!');
     }
 };
 
