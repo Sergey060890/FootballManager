@@ -15,8 +15,7 @@
 
 <header th:insert="blocks/headerTeam"></header>
 <center>
-    <h3>
-        Game editing
+    <h3 th:text="#{edit_text}">
     </h3>
 </center>
 
@@ -24,14 +23,13 @@
 
     <div class="container mt-5 mb-5" th:each="el : ${game}">
         <form method="post">
-            <button type="submit" class="btn-success">SAVE CHANGES</button>
+            <button type="submit" class="btn-success" th:text="#{save}"></button>
             <div class="span1"></div>
             <input type="text" th:value="${el.opponent_name}" name="opponent" id="name"
-                   placeholder="Enter opponent's name"
+                   th:placeholder="#{game_create}"
                    class="form-control"></br>
-
             <center>
-                <a th:href="'/teams/'+${teamId}+ '/games'" class="gradient-button1">BACK</a>
+                <a th:href="'/teams/'+${teamId}+ '/games'" class="gradient-button1" th:text="#{back}"></a>
             </center>
         </form>
     </div>

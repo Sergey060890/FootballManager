@@ -21,36 +21,35 @@
 <form method="post">
 
     <center>
-        <h3>
-            Adding a player
+        <h3 th:text="#{adding_player}">
         </h3>
         <br>
-        <button class="btn-success" type="submit">ADD</button>
+        <button class="btn-success" type="submit" th:text="#{add_2}"></button>
         <br><br>
-        <label for="pos">Сhoose a position</label>
+        <label for="pos" th:text="#{choose_pos}"></label>
         <select name="position" id="pos" style="width: 170px;"/>
-        <option value="GK">GK</option>
-        <option value="FRW">FRW</option>
-        <option value="RW">RW</option>
-        <option value="LW">LW</option>
-        <option value="CM">CM</option>
-        <option value="RM">RM</option>
-        <option value="LM">LM</option>
-        <option value="CB">CB</option>
-        <option value="LB">LB</option>
-        <option value="RB">RB</option>
+        <option value="GK" th:text="#{gk}"></option>
+        <option value="FRW" th:text="#{frw}"></option>
+        <option value="RW" th:text="#{rw}"></option>
+        <option value="LW" th:text="#{lw}"></option>
+        <option value="CM" th:text="#{cm}"></option>
+        <option value="RM" th:text="#{rm}"></option>
+        <option value="LM" th:text="#{lm}"></option>
+        <option value="CB" th:text="#{cb}"></option>
+        <option value="LB" th:text="#{lb}"></option>
+        <option value="RB" th:text="#{rb}"></option>
         </select>
         <br><br>
         <div class="span6"></div>
-        <input name="name" id="name" required placeholder="Enter name" style="width:300px;"/><br><br>
+        <input name="name" id="name" th:placeholder="#{enter_name}" style="width:300px;"/><br><br>
         <div class="span7"></div>
-        <input name="surname" id="surname" placeholder="Enter last name" style="width: 300px;"/><br><br>
+        <input name="surname" id="surname" th:placeholder="#{enter_last_name}" style="width: 300px;"/><br><br>
         <div class="span8"></div>
-        <input name="country" id="country" placeholder="Enter country" style="width: 300px;"/><br><br>
+        <input name="country" id="country" th:placeholder="#{enter_country}" style="width: 300px;"/><br><br>
         <div class="span9"></div>
-        <input name="age" id="age" placeholder="Enter age" style="width: 300px;"/><br><br>
+        <input name="age" id="age" th:placeholder="#{enter_age}" style="width: 300px;"/><br><br>
 
-        <a th:href="'/teams/'+${teamId}+ '/players'" class="gradient-button1">BACK</a>
+        <a th:href="'/teams/'+${teamId}+ '/players'" class="gradient-button1" th:text="#{back}"></a>
     </center>
 </form>
 

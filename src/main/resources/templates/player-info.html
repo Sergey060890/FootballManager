@@ -12,17 +12,17 @@
 
 <body th:style="'background: url(/images/male-soccer-player-with-ball-1477005.jpg)'">
 <header th:insert="blocks/headerTeam"></header>
-<center><h3>Player information</h3></center>
+<center><h3 th:text="#{player_info}"></h3></center>
 <table class="table table-striped">
 
     <tr class="frame">
 
-        <th>NAME</th>
-        <th>SURNAME</th>
-        <th>COUNTRY</th>
-        <th>AGE</th>
-        <th>POSITION</th>
-        <th colspan="2" scope="col">ACTIONS</th>
+        <th th:text="#{name_2}"></th>
+        <th th:text="#{surname}"></th>
+        <th th:text="#{country}"></th>
+        <th th:text="#{age}"></th>
+        <th th:text="#{position}"></th>
+        <th colspan="2" scope="col" th:text="#{actions_2}"></th>
     </tr>
 
 
@@ -59,11 +59,10 @@
         </td>
 
         <td>
-            <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/edit'" class="custom-btn btn-4">EDIT</a>
+            <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/edit'" class="custom-btn btn-4" th:text="#{edit_2}"></a>
             <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/stats'"
-               class="custom-btn btn-3">STATS</a><br>
-            <button type="button" class="custom-btn btn-8" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                DELETE
+               class="custom-btn btn-3" th:text="#{stats_2}"></a><br>
+            <button type="button" class="custom-btn btn-8" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="#{delete}">
             </button>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -72,18 +71,17 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <center>
-                                <h3 class="modal-title" id="exampleModalLabel">Removing a player</h3>
+                                <h3 class="modal-title" id="exampleModalLabel" th:text="#{remove_player}"></h3>
                             </center>
                         </div>
-                        <div class="modal-body">
-                            Are you sure you want to remove a player from this team?
+                        <div class="modal-body" th:text="#{remove_player_info}">
                         </div>
                         <div class="modal-footer">
                             <form th:action="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/remove'"
                                   method="post">
-                                <button class="btn btn-danger" type="submit">YES</button>
+                                <button class="btn btn-danger" type="submit" th:text="#{yes}"></button>
                             </form>
-                            <button class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+                            <button class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{no}"></button>
                         </div>
                     </div>
                 </div>
@@ -91,7 +89,7 @@
         </td>
     </tr>
 </table>
-<center><a th:href="'/teams/'+${teamId}+ '/players'" class="gradient-button1">BACK</a></center>
+<center><a th:href="'/teams/'+${teamId}+ '/players'" class="gradient-button1" th:text="#{back}"></a></center>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"

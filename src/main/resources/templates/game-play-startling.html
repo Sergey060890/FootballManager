@@ -29,7 +29,7 @@
 </head>
 <body th:style=" 'background: url(/images/imgonline-com-ua-Resize-864Nm720FpSU.jpg)'">
 <center>
-    <h3>Please select starting lineup!</h3>
+    <h3 th:text="#{starting_lineup}"></h3>
 </center>
 <br><br><br>
 
@@ -41,23 +41,23 @@
                    th:text="${' '+el.player_surname}+' '+${ el.position} ">
         </div>
         <center>
-            <button type="submit" class="custom-btn btn-8">GO!</button>
-            <a th:href="'/teams/'+${teamId}+ '/games/'+${game.id}+'/play'" class="custom-btn btn-3">BACK</a>
+            <button type="submit" class="custom-btn btn-8" th:text="#{go_2}"></button>
+            <a th:href="'/teams/'+${teamId}+ '/games/'+${game.id}+'/play'" class="custom-btn btn-3" th:text="#{back}"></a>
         </center>
     </form>
 </div>
 
 <div id="bg_popup">
     <div id="popup">
-        <center><h1>Choose your starting lineup!</h1></center>
-        <p>- In the starting line-up you need to choose 11 players!</p>
-        <p>- Don't forget to choose a goalkeeper!</p>
-        <p>- There can be no more than 1 goalkeeper in the starting line-up</p>
+        <center><h1 th:text="#{choose_1}"></h1></center>
+        <p th:text="#{choose_2}"></p>
+        <p th:text="#{choose_3}"></p>
+        <p th:text="#{choose_4}"></p>
         <p></p>
-        <p>* If these conditions are not met, you will be returned to the composition selection page!</p>
+        <p th:text="#{choose_5}"></p>
         <center>
             <a class="custom-btn btn-1 my-2 my-lg-2" href="#" title="Close"
-               onclick="document.getElementById('bg_popup').style.display='none'; return false;">OK</a>
+               onclick="document.getElementById('bg_popup').style.display='none'; return false;" th:text="#{ok}"></a>
         </center>
     </div>
 </div>

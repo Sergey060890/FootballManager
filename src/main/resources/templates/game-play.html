@@ -37,22 +37,22 @@
     <tr>
 
         <th>
-            <center>Teams</center>
+            <center th:text="#{teams}"></center>
         </th>
         <th>
-            <center>Stadium</center>
-        </th>
-
-        <th>
-            <center>Weather</center>
+            <center th:text="#{stadium_2}"></center>
         </th>
 
         <th>
-            <center>Attendance</center>
+            <center th:text="#{weather}"></center>
         </th>
 
         <th>
-            <center>Referee</center>
+            <center th:text="#{attendance}"></center>
+        </th>
+
+        <th>
+            <center th:text="#{referee}"></center>
         </th>
     </tr>
 
@@ -96,8 +96,9 @@
 
 </table>
 <center>
-    <a th:href="'/teams/'+${team_id}+ '/games/'+${game.id}+'/play/startling'" class="custom-btn btn-4">START!</a>
-    <a th:href="'/teams/' +${team_id}+ '/games/'" class="custom-btn btn-1">BACK</a>
+    <a th:href="'/teams/'+${team_id}+ '/games/'+${game.id}+'/play/startling'" class="custom-btn btn-4"
+       th:text="#{start}"></a>
+    <a th:href="'/teams/' +${team_id}+ '/games/'" class="custom-btn btn-1" th:text="#{back}"></a>
 </center>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

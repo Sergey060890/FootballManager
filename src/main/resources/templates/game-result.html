@@ -21,6 +21,7 @@
         h2 {
             color: black; /* Цвет текста */
         }
+
         div {
             color: darkblue;
             margin: 2px;
@@ -39,7 +40,7 @@
 
         <div id="timer"></div>
         <div id="example" style="display: none">
-            <h5 style="color:green">GAME PROGRESS:</h5>
+            <h5 style="color:green" th:text="#{game_progress}"></h5>
 
 
             <div th:each="el : ${info.entrySet()} ">
@@ -72,7 +73,7 @@
             </div>
 
 
-            <h3 style="color: black" th:text="RESULT+':'"/></h2>
+            <h3 style="color: black" th:text="#{game_result}"/></h2>
 
             <div th:if="${game.result=='WIN'}">
                 <div><h3 style="background: darkgreen;font-size: 150%"
@@ -88,7 +89,7 @@
                 <div><h3 style="background: red;font-size: 150%"
                          th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
             </div>
-            <a th:href="'/teams/'+${teamId}+ '/games'" class="custom-btn btn-1">EXIT</a><br><br>
+            <a th:href="'/teams/'+${teamId}+ '/games'" class="custom-btn btn-1" th:text="#{exit}"></a><br><br>
         </div>
     </table>
 </center>

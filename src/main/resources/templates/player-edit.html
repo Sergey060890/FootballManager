@@ -21,47 +21,46 @@
 <header th:insert="blocks/headerTeam"></header>
 
 <center>
-    <h3>
-        Player Editing
+    <h3 th:text="#{editing_player}">
     </h3>
     <div th:each="el : ${player}">
         <form method="post">
-            <button class="btn-success" type="submit">SAVE CHANGES</button>
+            <button class="btn-success" type="submit" th:text="#{save}"></button>
             <br><br>
             <center>
-                <p style="color: blue">POSITION</p>
+                <p style="color: blue" th:text="#{position}"></p>
                 <select type="text" name="position" style="width: 300px;">
-                    <option>GK</option>
-                    <option>FRW</option>
-                    <option>RW</option>
-                    <option>LW</option>
-                    <option>CM</option>
-                    <option>RM</option>
-                    <option>LM</option>
-                    <option>CB</option>
-                    <option>LB</option>
-                    <option>RB</option>
+                    <option th:text="#{gk}"></option>
+                    <option th:text="#{frw}"></option>
+                    <option th:text="#{rw}"></option>
+                    <option th:text="#{lw}"></option>
+                    <option th:text="#{cm}"></option>
+                    <option th:text="#{rm}"></option>
+                    <option th:text="#{lm}"></option>
+                    <option th:text="#{cb}"></option>
+                    <option th:text="#{lb}"></option>
+                    <option th:text="#{rb}"></option>
                 </select>
-                <p style="color: blue">NAME</p>
+                <p style="color: blue" th:text="#{name_2}"></p>
                 <div class="span6"></div>
-                <input type="text" th:value="${el.player_name}" name="name" id="name" required placeholder="Enter name"
+                <input type="text" th:value="${el.player_name}" name="name" id="name" th:placeholder="#{enter_name}"
                        style="width: 300px;"></br>
-                <p style="color: blue">SURNAME</p>
+                <p style="color: blue" th:text="#{surname}"></p>
                 <div class="span7"></div>
                 <input type="text" th:value="${el.player_surname}" name="surname" id="surname"
-                       placeholder="Enter surname"
+                       th:placeholder="#{enter_last_name}"
                        style="width: 300px;"></br>
-                <p style="color: blue">COUNTRY</p>
+                <p style="color: blue" th:text="#{country}"></p>
                 <div class="span8"></div>
-                <input type="text" th:value="${el.country}" name="country" id="country" placeholder="Enter country"
+                <input type="text" th:value="${el.country}" name="country" id="country"
+                       th:placeholder="#{enter_country}"
                        style="width: 300px;"></br>
-                <p style="color: blue">AGE</p>
+                <p style="color: blue" th:text="#{age}"></p>
                 <div class="span9"></div>
-                <input type="text" th:value="${el.age}" name="age" id="age" placeholder="Enter age"
+                <input type="text" th:value="${el.age}" name="age" id="age" th:placeholder="#{enter_age}"
                        style="width: 300px;"></br>
-
                 <center>
-                    <a th:href="'/teams/'+${teamId}+ '/players'" class="gradient-button1">BACK</a>
+                    <a th:href="'/teams/'+${teamId}+ '/players'" class="gradient-button1" th:text="#{back}"></a>
                 </center>
             </center>
         </form>
