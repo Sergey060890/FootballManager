@@ -23,27 +23,27 @@
 <body th:style="'background: url(/images/220421-soc.jpeg)'">
 <header th:insert="blocks/headerTeam"></header>
 <center>
-    <h3>All team results</h3>
+    <h3 th:text="#{all_team_result}"></h3>
     <table class="table table-striped" border="3" width="50%">
         <tr>
             <th>
-                <center>Opponent</center>
+                <center th:text="#{opponent}"></center>
             </th>
             <th>
-                <center>Result</center>
+                <center th:text="#{result}"></center>
             </th>
             <th>
-                <center>Score</center>
+                <center th:text="#{score}"></center>
             </th>
             <th>
-                <center>Yellow card</center>
+                <center th:text="#{yellow_card}"></center>
             </th>
             <th>
-                <center>Red card</center>
+                <center th:text="#{red_card}"></center>
             </th>
         </tr>
         <tr class="table-light" th:if="${games.empty}">
-            <td colspan="5" scope="col"><h4>No games available</h4></td>
+            <td colspan="5" scope="col"><h4 th:text="#{no_games}"></h4></td>
         </tr>
 
         <tr class="table-light" th:each="el : ${games}">
@@ -79,7 +79,7 @@
         </tr>
         </c:forEach>
     </table>
-    <a th:href="'/teams/'+${team_id}+ '/statistics'" class="custom-btn btn-2">BACK</a><br><br>
+    <a th:href="'/teams/'+${team_id}+ '/statistics'" class="custom-btn btn-2" th:text="#{back}"></a><br><br>
 </center>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

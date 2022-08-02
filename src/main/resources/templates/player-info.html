@@ -12,7 +12,7 @@
 
 <body th:style="'background: url(/images/male-soccer-player-with-ball-1477005.jpg)'">
 <header th:insert="blocks/headerTeam"></header>
-<center><h3 th:text="#{player_info}"></h3></center>
+<center><h3 style="color: white" th:text="#{player_info}"></h3></center>
 <table class="table table-striped">
 
     <tr class="frame">
@@ -62,7 +62,7 @@
             <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/edit'" class="custom-btn btn-4" th:text="#{edit_2}"></a>
             <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info/stats'"
                class="custom-btn btn-3" th:text="#{stats_2}"></a><br>
-            <button type="button" class="custom-btn btn-8" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="#{delete}">
+            <button type="button" class="custom-btn btn-8" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="#{refuse}">
             </button>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

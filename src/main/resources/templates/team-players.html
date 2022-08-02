@@ -18,31 +18,30 @@
 <body th:style="'background: url(/images/imgonline-com-ua-Resize-qDHyeKh0zjA.jpg)'">
 <header th:insert="blocks/headerTeam"></header>
 <center>
-    <h3>
-        My lineup
+    <h3 th:text="#{my_lineup}">
     </h3><br>
-    <a th:href="'/teams/'+${team_id}+ '/players/addPlayer'" class="custom-btn btn-13">ADD</a>
-    <a th:href="'/teams/' + ${teamId}" class="custom-btn btn-1">BACK</a><br><br>
+    <a th:href="'/teams/'+${team_id}+ '/players/addPlayer'" class="custom-btn btn-13" th:text="#{add_2}"></a>
+    <a th:href="'/teams/' + ${teamId}" class="custom-btn btn-1" th:text="#{back}"></a><br><br>
     <table border="3" width="50%">
         <thead>
         <tr>
             <th>
-                <center>Name</center>
+                <center th:text="#{name_3}"></center>
             </th>
             <th>
-                <center>Surname</center>
+                <center th:text="#{surname_2}"></center>
             </th>
             <th>
-                <center>Position</center>
+                <center th:text="#{position_2}"></center>
             </th>
             <th colspan="1">
-                <center>Actions</center>
+                <center th:text="#{actions}"></center>
             </th>
         </tr>
         </thead>
         <tbody>
         <tr th:if="${players.empty}">
-            <td colspan="4" scope="col"><h4>No players available</h4></td>
+            <td colspan="4" scope="col"><h4 th:text="#{no_players}"></h4></td>
         </tr>
         <tr th:each="el : ${players}">
             <td>
@@ -61,7 +60,7 @@
             <td>
                 <center>
                     <a th:href="'/teams/'+${team_id}+ '/players/'+${el.player_id}+'/info'"
-                       class="custom-btn btn-3">INFO</a>
+                       class="custom-btn btn-3" th:text="#{info}"></a>
                 </center>
             </td>
         </tr>
@@ -69,8 +68,8 @@
     </table>
     <br>
 
-    <a th:href="'/teams/'+${team_id}+ '/players/addPlayer'" class="custom-btn btn-13">ADD</a>
-    <a th:href="'/teams/' + ${teamId}" class="custom-btn btn-1">BACK</a><br><br>
+    <a th:href="'/teams/'+${team_id}+ '/players/addPlayer'" class="custom-btn btn-13" th:text="#{add_2}"></a>
+    <a th:href="'/teams/' + ${teamId}" class="custom-btn btn-1" th:text="#{back}"></a><br><br>
 
 </center>
 

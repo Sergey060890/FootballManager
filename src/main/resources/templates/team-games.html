@@ -22,15 +22,17 @@
     <table class="table table-striped" border="3" width="50%">
         <thead>
         <tr>
-            <th>Opponent</th>
+            <th>
+                <center th:text="#{opponent}"></center>
+            </th>
             <th colspan="3">
-                <center>Actions</center>
+                <center th:text="#{actions}"></center>
             </th>
         </tr>
         </thead>
         <tbody>
         <tr class="table-light" th:if="${games.empty}">
-            <td colspan="3" scope="col"><h4>No games available</h4></td>
+            <td colspan="3" scope="col"><h4 th:text="#{no_games}"></h4></td>
         </tr>
         <tr class="table-light" th:each="el : ${games}">
             <td>
@@ -41,11 +43,12 @@
 
             <td>
                 <a th:href="'/teams/'+${team_id}+ '/games/'+${el.id}+'/play'"
-                   class="custom-btn btn-3"><span>PLAY!</span></a>
-                <a th:href="'/teams/'+${team_id}+ '/games/'+${el.id}+'/edit'" class="custom-btn btn-4"><span>EDIT</span></a>
+                   class="custom-btn btn-3"><span th:text="#{play_2}"></span></a>
+                <a th:href="'/teams/'+${team_id}+ '/games/'+${el.id}+'/edit'" class="custom-btn btn-4"><span
+                        th:text="#{edit_2}"></span></a>
 
                 <form th:action="'/teams/'+${team_id}+ '/games/'+${el.id}+'/remove'" method="post">
-                    <button class="custom-btn btn-8" type="submit">REFUSE</button>
+                    <button class="custom-btn btn-8" type="submit" th:text="#{refuse}"></button>
                 </form>
 
             </td>
@@ -53,8 +56,8 @@
         </tbody>
     </table>
 
-    <a th:href="'/teams/'+${team_id}+ '/games/createGame'" class="gradient-button1">NEW GAME</a>
-    <a th:href="'/teams/' + ${teamId}" class="gradient-button1">BACK</a>
+    <a th:href="'/teams/'+${team_id}+ '/games/createGame'" class="gradient-button1" th:text="#{new_game}"></a>
+    <a th:href="'/teams/' + ${teamId}" class="gradient-button1" th:text="#{back}"></a>
 
 </center>
 

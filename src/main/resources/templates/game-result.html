@@ -89,7 +89,7 @@
                 <div><h3 style="background: red;font-size: 150%"
                          th:text="${game.result + ' ' + game.goal_score + ':' + game.goals_conceded }"/></div>
             </div>
-            <a th:href="'/teams/'+${teamId}+ '/games'" class="custom-btn btn-1" th:text="#{exit}"></a><br><br>
+            <a th:href="'/teams/'+${teamId}+ '/games'" class="gradient-button1" th:text="#{exit}"></a><br><br>
         </div>
     </table>
 </center>
@@ -99,7 +99,7 @@
         var i = 6;
         var timer = setInterval(function () {
             i--;
-            document.getElementById('timer').innerHTML = 'Game result after: ' + i + ' seconds';
+            document.getElementById('timer').innerHTML = 'Game result after (Результат игры через): ' + i + ' seconds (секунд)';
             if (i == 0) {
                 document.getElementById('example').style.display = 'block';
                 document.getElementById('timer').style.display = 'none';

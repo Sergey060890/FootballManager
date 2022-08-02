@@ -9,11 +9,16 @@
             crossorigin="anonymous"></script>
     <link href="../static/css/neon.css" rel="stylesheet">
     <link href="../static/css/woow.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
     <link href="../static/css/stats.css" rel="stylesheet" th:href="@{/css/stats.css}">
     <link href="../static/css/neon.css" rel="stylesheet" th:href="@{/css/neon.css}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
@@ -34,7 +39,7 @@
                     <h3 class="text-uppercase" th:text="${team.team_name +' '+ team.city}"/>
                 </center>
 
-                <p>Statistics</p>
+                <p th:text="#{stats_3}"></p>
             </div>
         </div>
 
@@ -46,7 +51,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <span>TOTAL GAMES:</span>
+                                    <span th:text="#{total_games}"></span>
                                     <h2 style="color: black" th:text="${countGame}"/><br>
                                 </div>
                                 <div class="align-self-center">
@@ -64,7 +69,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <span>WIN:</span>
+                                    <span th:text="#{win}"></span>
                                     <h3 class="success" th:text="${countWinGame}"></h3><br>
                                     <h3 class="success" th:text="${win}+' %'"></h3>
                                 </div>
@@ -81,7 +86,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <span>DRAW:</span>
+                                    <span th:text="#{draw}"></span>
                                     <h3 class="info" th:text="${countDrawGame}"></h3><br>
                                     <h3 class="info" th:text="${draw}+' %'"></h3>
                                 </div>
@@ -97,7 +102,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="media-body text-left">
-                                    <span>LOSE:</span>
+                                    <span th:text="#{lose}"></span>
                                     <h3 class="danger" th:text="${countLoseGame}"></h3><br>
                                     <h3 class="danger" th:text="${lose}+' %'"></h3>
                                 </div>
@@ -113,7 +118,7 @@
     <section id="stats-subtitle">
         <div class="row">
             <div class="col-12 mt-3 mb-1">
-                <p>Detailed statistics</p>
+                <p th:text="#{detailed_stats}"></p>
             </div>
         </div>
 
@@ -127,7 +132,7 @@
                                     <img src="/images/football256_24897.png">
                                 </div>
                                 <div class="media-body">
-                                    <h4>Goals scored</h4>
+                                    <h4 th:text="#{goal_scored}"></h4>
                                 </div>
                                 <div class="align-self-center">
                                     <h3 style="color: black" th:text="${countGoalScore}"/>
@@ -147,7 +152,7 @@
                                     <img src="/images/Football_2-36_icon-icons.com_72119.png">
                                 </div>
                                 <div class="media-body">
-                                    <h4>Goals conceded</h4>
+                                    <h4 th:text="#{goal_conceded}"></h4>
                                 </div>
                                 <div class="align-self-center">
                                     <h3 style="color: black" th:text="${countGoalConceded}"/>
@@ -167,7 +172,7 @@
                                     <img src="/images/Football_2-45_icon-icons.com_72118.png">
                                 </div>
                                 <div class="media-body">
-                                    <h4>Total yellow cards</h4>
+                                    <h4 th:text="#{total_yellow_card}"></h4>
                                 </div>
                                 <div class="align-self-center">
                                     <h3 style="color: black" th:text="${countYellowCard}"/>
@@ -187,7 +192,7 @@
                                     <img src="/images/Football_2-50_icon-icons.com_72106.png">
                                 </div>
                                 <div class="media-body">
-                                    <h4>Total red cards</h4>
+                                    <h4 th:text="#{total_red_card}"></h4>
                                 </div>
                                 <div class="align-self-center">
                                     <h3 style="color: black" th:text="${countRedCard}"/>
@@ -200,8 +205,8 @@
         </div>
     </section>
     <center>
-        <a th:href="'/teams/'+${team_id}+ '/statistics/learnMore'" class="custom-btn btn-4">LEARN MORE</a>
-        <a th:href="'/teams/' + ${teamId}" class="custom-btn btn-2">BACK</a><br><br>
+        <a th:href="'/teams/'+${team_id}+ '/statistics/learnMore'" class="custom-btn btn-4" th:text="#{learn_more}"></a>
+        <a th:href="'/teams/' + ${teamId}" class="custom-btn btn-2" th:text="#{back}"></a><br><br>
     </center>
 </div>
 
