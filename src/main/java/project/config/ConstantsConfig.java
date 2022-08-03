@@ -10,6 +10,7 @@ public class ConstantsConfig {
     public static final String ADMIN = "ADMIN";
     public static final String USER = "USER";
     public static final String LOGIN = "/login";
+    public static final String DEFAULT_SUCCESS_URL = "/";
 
 
     /**
